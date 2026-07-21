@@ -194,77 +194,114 @@ function fetchQuestionsFromDoc() {
 function saveResultsToSheets(data) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   
-  // 1. Obtener o crear Hoja 1: "Participante"
+  // 1. Obtener o administrar Hoja 1: "Participante"
   let partSheet = ss.getSheetByName("Participante");
   if (!partSheet) {
-    partSheet = ss.insertSheet("Participante");
-  }
-  if (partSheet.getLastRow() === 0) {
-    partSheet.appendRow([
-      "FECHA", 
-      "HORA", 
-      "TIPO IDENTIFICACIÓN", 
-      "NÚMERO IDENTIFICACIÓN", 
-      "NOMBRE COMPLETO", 
-      "EDAD", 
-      "EMPRESA", 
-      "AÑOS ANTIGÜEDAD", 
-      "TIPO LICENCIA", 
-      "RESPUESTAS CORRECTAS", 
-      "RESPUESTAS INCORRECTAS", 
-      "PUNTAJE GLOBAL (%)", 
-      "RESULTADO GLOBAL", 
-      "TIEMPO EMPLEADO"
-    ]);
-    partSheet.getRange("A1:N1").setFontWeight("bold").setBackground("#1e3a8a").setFontColor("white");
+    // Si existe una hoja por defecto ("Hoja 1", "Sheet1" o la única hoja existente), la renombramos
+    const defaultSheet = ss.getSheetByName("Hoja 1") || ss.getSheetByName("Sheet1") || (ss.getSheets().length === 1 ? ss.getSheets()[0] : null);
+    if (defaultSheet) {
+      partSheet = defaultSheet;
+      partSheet.setName("Participante");
+    } else {
+      partSheet = ss.insertSheet("Participante");
+    }
   }
 
-  // 2. Obtener o crear Hoja 2: "Resultados"
+  // Definir cabeceras oficiales para Hoja 1 "Participante"
+  const partHeaders = [
+    "FECHA", 
+    "HORA", 
+    "TIPO IDENTIFICACIÓN", 
+    "NÚMERO IDENTIFICACIÓN", 
+    "NOMBRE COMPLETO", 
+    "EDAD", 
+    "EMPRESA", 
+    "AÑOS ANTIGÜEDAD", 
+    "TIPO LICENCIA", 
+    "RESPUESTAS CORRECTAS", 
+    "RESPUESTAS INCORRECTAS", 
+    "PUNTAJE GLOBAL (%)", 
+    "RESULTADO GLOBAL", 
+    "TIEMPO EMPLEADO"
+  ];
+
+  // Garantizar cabecera en la fila 1 de "Participante"
+  if (partSheet.getLastRow() === 0) {
+    partSheet.appendRow(partHeaders);
+    partSheet.getRange(1, 1, 1, partHeaders.length).setFontWeight("bold").setBackground("#1e3a8a").setFontColor("white");
+  } else {
+    const valA1 = String(partSheet.getRange(1, 1).getValue()).trim().toUpperCase();
+    if (valA1 !== "FECHA") {
+      partSheet.insertRowBefore(1);
+      partSheet.getRange(1, 1, 1, partHeaders.length).setValues([partHeaders]);
+      partSheet.getRange(1, 1, 1, partHeaders.length).setFontWeight("bold").setBackground("#1e3a8a").setFontColor("white");
+    }
+  }
+
+  // 2. Obtener o administrar Hoja 2: "Resultados"
   let resSheet = ss.getSheetByName("Resultados");
   if (!resSheet) {
     resSheet = ss.insertSheet("Resultados");
   }
+
+  // Definir cabeceras oficiales para Hoja 2 "Resultados"
+  const resHeaders = [
+    "FECHA", 
+    "HORA", 
+    "TIPO IDENTIFICACIÓN", 
+    "NÚMERO IDENTIFICACIÓN", 
+    "NOMBRE COMPLETO", 
+    "EDAD", 
+    "EMPRESA", 
+    "AÑOS ANTIGÜEDAD", 
+    "TIPO LICENCIA", 
+    "PORCENTAJE MECÁNICA", 
+    "PORCENTAJE SITUACIONES DE CONDUCCIÓN", 
+    "PORCENTAJE INFRAESTRUCTURA", 
+    "PORCENTAJE NORMATIVA VIAL", 
+    "PUNTAJE GLOBAL (%)", 
+    "RESULTADO GLOBAL", 
+    "TIEMPO EMPLEADO"
+  ];
+
+  // Garantizar cabecera en la fila 1 de "Resultados"
   if (resSheet.getLastRow() === 0) {
-    resSheet.appendRow([
-      "FECHA", 
-      "HORA", 
-      "TIPO IDENTIFICACIÓN", 
-      "NÚMERO IDENTIFICACIÓN", 
-      "NOMBRE COMPLETO", 
-      "EDAD", 
-      "EMPRESA", 
-      "AÑOS ANTIGÜEDAD", 
-      "TIPO LICENCIA", 
-      "PORCENTAJE MECÁNICA", 
-      "PORCENTAJE SITUACIONES DE CONDUCCIÓN", 
-      "PORCENTAJE INFRAESTRUCTURA", 
-      "PORCENTAJE NORMATIVA VIAL", 
-      "PUNTAJE GLOBAL (%)", 
-      "RESULTADO GLOBAL", 
-      "TIEMPO EMPLEADO"
-    ]);
-    resSheet.getRange("A1:P1").setFontWeight("bold").setBackground("#0f766e").setFontColor("white");
+    resSheet.appendRow(resHeaders);
+    resSheet.getRange(1, 1, 1, resHeaders.length).setFontWeight("bold").setBackground("#0f766e").setFontColor("white");
+  } else {
+    const valResA1 = String(resSheet.getRange(1, 1).getValue()).trim().toUpperCase();
+    if (valResA1 !== "FECHA") {
+      resSheet.insertRowBefore(1);
+      resSheet.getRange(1, 1, 1, resHeaders.length).setValues([resHeaders]);
+      resSheet.getRange(1, 1, 1, resHeaders.length).setFontWeight("bold").setBackground("#0f766e").setFontColor("white");
+    }
   }
 
-  const fecha = data.fecha || new Date().toLocaleDateString();
-  const hora = data.hora || new Date().toLocaleTimeString();
+  // Extraer y sanitizar datos numéricos para prevenir errores #NUM!
+  const fecha = data.fecha || new Date().toLocaleDateString("es-CO");
+  const hora = data.hora || new Date().toLocaleTimeString("es-CO");
+  const correctas = Number(data.correctas) || 0;
+  const incorrectas = Number(data.incorrectas) || 0;
+  const puntaje = Number(data.puntaje) || 0;
+  const edad = Number(data.edad) || 0;
+  const antiguedad = Number(data.antiguedad) || 0;
 
-  // Escribir fila en Hoja 1 "Participante"
+  // Escribir fila limpia en Hoja 1 "Participante"
   partSheet.appendRow([
     fecha,
     hora,
-    data.tipoIdentificacion,
-    data.numeroIdentificacion,
-    data.nombreCompleto,
-    data.edad,
-    data.empresa,
-    data.antiguedad,
-    data.tipoLicencia,
-    data.correctas,
-    data.incorrectas,
-    data.puntaje,
-    data.resultado, // "Aprobado" | "No aprobado"
-    data.tiempoEmpleado
+    data.tipoIdentificacion || "",
+    data.numeroIdentificacion || "",
+    data.nombreCompleto || "",
+    edad,
+    data.empresa || "",
+    antiguedad,
+    data.tipoLicencia || "",
+    correctas,
+    incorrectas,
+    puntaje + "%",
+    data.resultado || "No aprobado",
+    data.tiempoEmpleado || "0:00"
   ]);
 
   // Calcular porcentajes por módulo para Hoja 2 "Resultados"
@@ -276,7 +313,7 @@ function saveResultsToSheets(data) {
   if (data.detalles && Array.isArray(data.detalles)) {
     data.detalles.forEach(function(det) {
       const cat = (det.category || "").toLowerCase();
-      const qId = det.preguntaId || 0;
+      const qId = Number(det.preguntaId) || 0;
       const isCorrect = det.esCorrecta === true || det.esCorrecta === "SÍ" || det.esCorrecta === "SI";
 
       let moduleType = "";
@@ -319,24 +356,24 @@ function saveResultsToSheets(data) {
   const infraPct = infraTotal > 0 ? Math.round((infraCorrect / infraTotal) * 100) : 0;
   const normPct = normTotal > 0 ? Math.round((normCorrect / normTotal) * 100) : 0;
 
-  // Escribir fila en Hoja 2 "Resultados"
+  // Escribir fila limpia en Hoja 2 "Resultados"
   resSheet.appendRow([
     fecha,
     hora,
-    data.tipoIdentificacion,
-    data.numeroIdentificacion,
-    data.nombreCompleto,
-    data.edad,
-    data.empresa,
-    data.antiguedad,
-    data.tipoLicencia,
+    data.tipoIdentificacion || "",
+    data.numeroIdentificacion || "",
+    data.nombreCompleto || "",
+    edad,
+    data.empresa || "",
+    antiguedad,
+    data.tipoLicencia || "",
     mecPct + "%",
     condPct + "%",
     infraPct + "%",
     normPct + "%",
-    data.puntaje,
-    data.resultado, // "Aprobado" | "No aprobado"
-    data.tiempoEmpleado
+    puntaje + "%",
+    data.resultado || "No aprobado",
+    data.tiempoEmpleado || "0:00"
   ]);
 
   return {

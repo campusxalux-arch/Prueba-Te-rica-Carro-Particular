@@ -198,18 +198,18 @@ export async function writeResultsToSheets(
     const participanteRow = [
       fecha,
       hora,
-      data.tipoIdentificacion,
-      data.numeroIdentificacion,
-      data.nombreCompleto,
-      data.edad,
-      data.empresa,
-      data.antiguedad,
-      data.tipoLicencia,
-      data.correctas,
-      data.incorrectas,
-      data.puntaje,
-      data.resultado, // "Aprobado" | "No aprobado"
-      data.tiempoEmpleado
+      data.tipoIdentificacion || "",
+      data.numeroIdentificacion || "",
+      data.nombreCompleto || "",
+      Number(data.edad) || 0,
+      data.empresa || "",
+      Number(data.antiguedad) || 0,
+      data.tipoLicencia || "",
+      Number(data.correctas) || 0,
+      Number(data.incorrectas) || 0,
+      (Number(data.puntaje) || 0) + "%",
+      data.resultado || "No aprobado", // "Aprobado" | "No aprobado"
+      data.tiempoEmpleado || "0:00"
     ];
 
     const appendParticipanteRes = await fetch(
@@ -280,20 +280,20 @@ export async function writeResultsToSheets(
     const resultadosRow = [
       fecha,
       hora,
-      data.tipoIdentificacion,
-      data.numeroIdentificacion,
-      data.nombreCompleto,
-      data.edad,
-      data.empresa,
-      data.antiguedad,
-      data.tipoLicencia,
+      data.tipoIdentificacion || "",
+      data.numeroIdentificacion || "",
+      data.nombreCompleto || "",
+      Number(data.edad) || 0,
+      data.empresa || "",
+      Number(data.antiguedad) || 0,
+      data.tipoLicencia || "",
       `${mecPct}%`,
       `${condPct}%`,
       `${infraPct}%`,
       `${normPct}%`,
-      data.puntaje,
-      data.resultado, // "Aprobado" | "No aprobado"
-      data.tiempoEmpleado
+      (Number(data.puntaje) || 0) + "%",
+      data.resultado || "No aprobado", // "Aprobado" | "No aprobado"
+      data.tiempoEmpleado || "0:00"
     ];
 
     const appendResultadosRes = await fetch(
