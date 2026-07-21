@@ -150,7 +150,7 @@ export default function App() {
                 {/* Mobile Hero Badge & Header */}
                 <div className="text-center pt-1 pb-1">
                   <span className="inline-block px-3 py-1 bg-blue-100/80 text-blue-800 text-[10px] font-extrabold rounded-full uppercase tracking-wider mb-1.5">
-                    Evaluación de Conductores
+                    Evaluación de Conductores - Servicio Particular
                   </span>
                   <h1 className="text-lg font-black text-slate-900 tracking-tight uppercase leading-snug">
                     Evaluación <span className="text-blue-600">Teórica</span>

@@ -49,7 +49,10 @@ function getBlockFromDetail(det: any): number {
 
 /**
  * Writes exam results directly to Google Sheets using the Sheets API.
- * Ensures sheets "Resultados" and "Detalles_Respuestas" exist, creating them if necessary.
+ * Ensures sheets "Participante" and "Resultados" exist, creating them if necessary.
+ * 
+ * Hoja 1 "Participante": Datos de registro + resultado global de examen (Aprobado/No aprobado).
+ * Hoja 2 "Resultados": Datos del participante + porcentaje por módulo + resultado global.
  */
 export async function writeResultsToSheets(
   spreadsheetId: string,
@@ -62,7 +65,6 @@ export async function writeResultsToSheets(
   }
 
   const now = new Date();
-  // Format current date and time
   const fecha = now.toLocaleDateString("es-CO", { timeZone: "America/Bogota" });
   const hora = now.toLocaleTimeString("es-CO", { timeZone: "America/Bogota" });
 
@@ -72,7 +74,7 @@ export async function writeResultsToSheets(
   };
 
   try {
-    // Step 1: Ensure sheets exist. We can do a request to fetch spreadsheet metadata.
+    // Step 1: Fetch spreadsheet metadata to check existing sheets
     const metaRes = await fetch(
       `https://sheets.googleapis.com/v1/spreadsheets/${parsedSpreadsheetId}`,
       { headers }
@@ -86,12 +88,18 @@ export async function writeResultsToSheets(
     const meta = await metaRes.json();
     const sheetNames = (meta.sheets || []).map((s: any) => s.properties.title);
 
+    const hasParticipante = sheetNames.includes("Participante");
     const hasResultados = sheetNames.includes("Resultados");
-    const hasDetalles = sheetNames.includes("Detalles_Respuestas");
-    const hasBloques = sheetNames.includes("Resultados_Por_Bloques");
 
-    // Step 2: Create sheets and add headers if they don't exist
+    // Step 2: Create sheets if missing
     const requests: any[] = [];
+    if (!hasParticipante) {
+      requests.push({
+        addSheet: {
+          properties: { title: "Participante" }
+        }
+      });
+    }
     if (!hasResultados) {
       requests.push({
         addSheet: {
@@ -99,23 +107,9 @@ export async function writeResultsToSheets(
         }
       });
     }
-    if (!hasDetalles) {
-      requests.push({
-        addSheet: {
-          properties: { title: "Detalles_Respuestas" }
-        }
-      });
-    }
-    if (!hasBloques) {
-      requests.push({
-        addSheet: {
-          properties: { title: "Resultados_Por_Bloques" }
-        }
-      });
-    }
 
     if (requests.length > 0) {
-      console.log("[Sheets] Creando hojas necesarias en el documento...");
+      console.log("[Sheets] Creando pestañas requeridas ('Participante', 'Resultados')...");
       const createRes = await fetch(
         `https://sheets.googleapis.com/v1/spreadsheets/${parsedSpreadsheetId}:batchUpdate`,
         {
@@ -130,10 +124,10 @@ export async function writeResultsToSheets(
       }
     }
 
-    // Step 3: Write headers to "Resultados" if it was just created
-    if (!hasResultados) {
+    // Step 3: Write headers to "Participante" if missing or newly created
+    if (!hasParticipante) {
       await fetch(
-        `https://sheets.googleapis.com/v1/spreadsheets/${parsedSpreadsheetId}/values/Resultados!A1:N1?valueInputOption=USER_ENTERED`,
+        `https://sheets.googleapis.com/v1/spreadsheets/${parsedSpreadsheetId}/values/Participante!A1:N1?valueInputOption=USER_ENTERED`,
         {
           method: "PUT",
           headers,
@@ -150,8 +144,8 @@ export async function writeResultsToSheets(
               "Tipo Licencia", 
               "Respuestas Correctas", 
               "Respuestas Incorrectas", 
-              "Puntaje (Sobre 100)", 
-              "Resultado", 
+              "Puntaje Global", 
+              "Resultado Global", 
               "Tiempo Empleado"
             ]]
           })
@@ -159,10 +153,10 @@ export async function writeResultsToSheets(
       );
     }
 
-    // Step 4: Write headers to "Detalles_Respuestas" if it was just created
-    if (!hasDetalles) {
+    // Step 4: Write headers to "Resultados" if missing or newly created
+    if (!hasResultados) {
       await fetch(
-        `https://sheets.googleapis.com/v1/spreadsheets/${parsedSpreadsheetId}/values/Detalles_Respuestas!A1:H1?valueInputOption=USER_ENTERED`,
+        `https://sheets.googleapis.com/v1/spreadsheets/${parsedSpreadsheetId}/values/Resultados!A1:P1?valueInputOption=USER_ENTERED`,
         {
           method: "PUT",
           headers,
@@ -170,48 +164,28 @@ export async function writeResultsToSheets(
             values: [[
               "Fecha", 
               "Hora", 
+              "Tipo Identificación", 
               "Número Identificación", 
               "Nombre Completo", 
-              "Pregunta Número", 
-              "Pregunta Texto", 
-              "Respuesta Elegida", 
-              "¿Es Correcta?"
+              "Edad", 
+              "Empresa", 
+              "Años Antigüedad", 
+              "Tipo Licencia", 
+              "% Mecánica", 
+              "% Situaciones de Conducción", 
+              "% Infraestructura", 
+              "% Normativa Vial", 
+              "Puntaje Global", 
+              "Resultado Global", 
+              "Tiempo Empleado"
             ]]
           })
         }
       );
     }
 
-    // Step 4.5: Write headers to "Resultados_Por_Bloques" if it was just created
-    if (!hasBloques) {
-      await fetch(
-        `https://sheets.googleapis.com/v1/spreadsheets/${parsedSpreadsheetId}/values/Resultados_Por_Bloques!A1:M1?valueInputOption=USER_ENTERED`,
-        {
-          method: "PUT",
-          headers,
-          body: JSON.stringify({
-            values: [[
-              "Fecha",
-              "Hora",
-              "Número Identificación",
-              "Nombre Completo",
-              "Bloque 1: Mecánica (Preguntas)",
-              "Bloque 1: Mecánica (Correctas)",
-              "Bloque 1: Mecánica (% Acierto)",
-              "Bloque 2: Seguridad Vial (Preguntas)",
-              "Bloque 2: Seguridad Vial (Correctas)",
-              "Bloque 2: Seguridad Vial (% Acierto)",
-              "Bloque 3: Normas de Tránsito (Preguntas)",
-              "Bloque 3: Normas de Tránsito (Correctas)",
-              "Bloque 3: Normas de Tránsito (% Acierto)"
-            ]]
-          })
-        }
-      );
-    }
-
-    // Step 5: Append result row to "Resultados"
-    const resultadosRow = [
+    // Step 5: Append row to "Participante" (Sheet 1)
+    const participanteRow = [
       fecha,
       hora,
       data.tipoIdentificacion,
@@ -224,11 +198,95 @@ export async function writeResultsToSheets(
       data.correctas,
       data.incorrectas,
       data.puntaje,
-      data.resultado,
+      data.resultado, // "Aprobado" | "No aprobado"
       data.tiempoEmpleado
     ];
 
-    const appendRes = await fetch(
+    const appendParticipanteRes = await fetch(
+      `https://sheets.googleapis.com/v1/spreadsheets/${parsedSpreadsheetId}/values/Participante!A1:append?valueInputOption=USER_ENTERED`,
+      {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          values: [participanteRow]
+        })
+      }
+    );
+
+    if (!appendParticipanteRes.ok) {
+      const errText = await appendParticipanteRes.text();
+      throw new Error(`Error al agregar fila a Participante: ${errText}`);
+    }
+
+    // Step 6: Calculate percentage per module for "Resultados" (Sheet 2)
+    let mecTotal = 0, mecCorrect = 0;
+    let condTotal = 0, condCorrect = 0;
+    let infraTotal = 0, infraCorrect = 0;
+    let normTotal = 0, normCorrect = 0;
+
+    if (data.detalles && Array.isArray(data.detalles)) {
+      data.detalles.forEach((det: any) => {
+        const cat = (det.category || "").toLowerCase();
+        const isCorrect = det.esCorrecta;
+
+        if (cat.includes("mecán") || cat.includes("mecan")) {
+          mecTotal++;
+          if (isCorrect) mecCorrect++;
+        } else if (cat.includes("situac") || cat.includes("conduc")) {
+          condTotal++;
+          if (isCorrect) condCorrect++;
+        } else if (cat.includes("infraestruc")) {
+          infraTotal++;
+          if (isCorrect) infraCorrect++;
+        } else if (cat.includes("normat") || cat.includes("norma") || cat.includes("tránsito") || cat.includes("transito") || cat.includes("vial")) {
+          normTotal++;
+          if (isCorrect) normCorrect++;
+        } else {
+          // Fallback by question ID
+          const qId = det.preguntaId || 0;
+          if (qId >= 1 && qId <= 8) {
+            mecTotal++;
+            if (isCorrect) mecCorrect++;
+          } else if (qId >= 9 && qId <= 20) {
+            condTotal++;
+            if (isCorrect) condCorrect++;
+          } else if (qId >= 21 && qId <= 30) {
+            infraTotal++;
+            if (isCorrect) infraCorrect++;
+          } else {
+            normTotal++;
+            if (isCorrect) normCorrect++;
+          }
+        }
+      });
+    }
+
+    const mecPct = mecTotal > 0 ? Math.round((mecCorrect / mecTotal) * 100) : 0;
+    const condPct = condTotal > 0 ? Math.round((condCorrect / condTotal) * 100) : 0;
+    const infraPct = infraTotal > 0 ? Math.round((infraCorrect / infraTotal) * 100) : 0;
+    const normPct = normTotal > 0 ? Math.round((normCorrect / normTotal) * 100) : 0;
+
+    // Append row to "Resultados" (Sheet 2)
+    const resultadosRow = [
+      fecha,
+      hora,
+      data.tipoIdentificacion,
+      data.numeroIdentificacion,
+      data.nombreCompleto,
+      data.edad,
+      data.empresa,
+      data.antiguedad,
+      data.tipoLicencia,
+      `${mecPct}%`,
+      `${condPct}%`,
+      `${infraPct}%`,
+      `${normPct}%`,
+      data.puntaje,
+      data.resultado, // "Aprobado" | "No aprobado"
+      data.tiempoEmpleado
+    ];
+
+    const appendResultadosRes = await fetch(
       `https://sheets.googleapis.com/v1/spreadsheets/${parsedSpreadsheetId}/values/Resultados!A1:append?valueInputOption=USER_ENTERED`,
       {
         method: "POST",
@@ -239,107 +297,17 @@ export async function writeResultsToSheets(
       }
     );
 
-    if (!appendRes.ok) {
-      const errText = await appendRes.text();
-      throw new Error(`Error al agregar fila a Resultados: ${errText}`);
-    }
-
-    // Calculate block statistics for block results sheet
-    let b1Total = 0, b1Correct = 0;
-    let b2Total = 0, b2Correct = 0;
-    let b3Total = 0, b3Correct = 0;
-
-    if (data.detalles && Array.isArray(data.detalles)) {
-      data.detalles.forEach((det: any) => {
-        const block = getBlockFromDetail(det);
-        const isCorrect = det.esCorrecta;
-        if (block === 1) {
-          b1Total++;
-          if (isCorrect) b1Correct++;
-        } else if (block === 2) {
-          b2Total++;
-          if (isCorrect) b2Correct++;
-        } else if (block === 3) {
-          b3Total++;
-          if (isCorrect) b3Correct++;
-        }
-      });
-    }
-
-    const b1Pct = b1Total > 0 ? Math.round((b1Correct / b1Total) * 100) : 0;
-    const b2Pct = b2Total > 0 ? Math.round((b2Correct / b2Total) * 100) : 0;
-    const b3Pct = b3Total > 0 ? Math.round((b3Correct / b3Total) * 100) : 0;
-
-    const bloquesRow = [
-      fecha,
-      hora,
-      data.numeroIdentificacion,
-      data.nombreCompleto,
-      b1Total,
-      b1Correct,
-      `${b1Pct}%`,
-      b2Total,
-      b2Correct,
-      `${b2Pct}%`,
-      b3Total,
-      b3Correct,
-      `${b3Pct}%`
-    ];
-
-    const appendBloquesRes = await fetch(
-      `https://sheets.googleapis.com/v1/spreadsheets/${parsedSpreadsheetId}/values/Resultados_Por_Bloques!A1:append?valueInputOption=USER_ENTERED`,
-      {
-        method: "POST",
-        headers,
-        body: JSON.stringify({
-          values: [bloquesRow]
-        })
-      }
-    );
-
-    if (!appendBloquesRes.ok) {
-      console.warn("[Sheets] No se pudo agregar los resultados por bloques:", await appendBloquesRes.text());
-    }
-
-    // Step 6: Append detail rows to "Detalles_Respuestas" if present
-    let detailsCount = 0;
-    if (data.detalles && Array.isArray(data.detalles) && data.detalles.length > 0) {
-      const detallesRows = data.detalles.map((det, index) => [
-        fecha,
-        hora,
-        data.numeroIdentificacion,
-        data.nombreCompleto,
-        index + 1,
-        det.pregunta,
-        det.elegida,
-        det.esCorrecta ? "SÍ" : "NO"
-      ]);
-
-      const appendDetailsRes = await fetch(
-        `https://sheets.googleapis.com/v1/spreadsheets/${parsedSpreadsheetId}/values/Detalles_Respuestas!A1:append?valueInputOption=USER_ENTERED`,
-        {
-          method: "POST",
-          headers,
-          body: JSON.stringify({
-            values: detallesRows
-          })
-        }
-      );
-
-      if (!appendDetailsRes.ok) {
-        console.warn("[Sheets] No se pudo agregar el detalle de las respuestas:", await appendDetailsRes.text());
-      } else {
-        detailsCount = detallesRows.length;
-      }
+    if (!appendResultadosRes.ok) {
+      console.warn("[Sheets] No se pudo agregar la fila a Resultados:", await appendResultadosRes.text());
     }
 
     return {
       success: true,
-      message: "Resultados sincronizados con Google Sheets con éxito.",
+      message: "Resultados sincronizados con Google Sheets con éxito en las hojas 'Participante' y 'Resultados'.",
       details: {
         spreadsheetId: parsedSpreadsheetId,
-        resultadosAgregados: 1,
-        detallesAgregados: detailsCount
+        participanteAgregado: 1,
+        resultadosAgregados: 1
       }
     };
 

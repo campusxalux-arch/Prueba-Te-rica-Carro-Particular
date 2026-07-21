@@ -13,7 +13,8 @@ import {
   ArrowRight, 
   Volume2, 
   VolumeX,
-  AlertTriangle 
+  AlertTriangle,
+  User 
 } from "lucide-react";
 import { Question, AnswerDetail } from "../types";
 
@@ -215,14 +216,29 @@ export default function ExamSession({ questions, onComplete, userName }: ExamSes
         </motion.div>
       )}
 
-      {/* Progress Bar Container */}
-      <div className="mb-5 bg-slate-200 h-2.5 rounded-full overflow-hidden shadow-inner">
-        <motion.div 
-          className={`h-full rounded-full transition-colors duration-300 ${isTimeWarning ? "bg-orange-500" : "bg-blue-600"}`}
-          initial={{ width: 0 }}
-          animate={{ width: `${progressPercent}%` }}
-          transition={{ duration: 0.3 }}
-        />
+      {/* Progress Bar Container with Participant Name and Question Number */}
+      <div className="mb-4 space-y-1.5">
+        <div className="flex justify-between items-center text-xs px-0.5">
+          <div className="flex items-center gap-1.5 min-w-0 max-w-[210px] text-slate-700 bg-white/80 px-2 py-0.5 rounded-lg border border-slate-100 shadow-2xs">
+            <User className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+            <span className="truncate uppercase font-extrabold text-[11px] text-slate-800">
+              {userName || "Aspirante"}
+            </span>
+          </div>
+
+          <div className="text-blue-700 font-mono text-[11px] font-black shrink-0 bg-blue-50/90 px-2.5 py-0.5 rounded-full border border-blue-100/80 shadow-2xs">
+            Pregunta {currentIndex + 1} de {questions.length}
+          </div>
+        </div>
+
+        <div className="bg-slate-200 h-2.5 rounded-full overflow-hidden shadow-inner">
+          <motion.div 
+            className={`h-full rounded-full transition-colors duration-300 ${isTimeWarning ? "bg-orange-500" : "bg-blue-600"}`}
+            initial={{ width: 0 }}
+            animate={{ width: `${progressPercent}%` }}
+            transition={{ duration: 0.3 }}
+          />
+        </div>
       </div>
 
       {/* Question Runner Card */}

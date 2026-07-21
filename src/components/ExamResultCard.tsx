@@ -22,7 +22,6 @@ import {
   Download 
 } from "lucide-react";
 import { UserRegistration, AnswerDetail, ExamResult, SyncStatus } from "../types";
-import InscolsstLogo from "./InscolsstLogo";
 import SiecLogo from "./SiecLogo";
 
 interface ExamResultCardProps {
@@ -418,15 +417,13 @@ export default function ExamResultCard({
             </div>
           </div>
 
-          {/* Co-Branded Official Seal of INSCOLSST & SIEC */}
+          {/* Official Seal of SIEC */}
           <div className="border-t border-slate-100 pt-5 mt-6 pb-4 text-center flex flex-col items-center justify-center bg-slate-50/50 -mx-6 px-6 border-b rounded-b-3xl gap-4">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <InscolsstLogo size="sm" variant="full" />
-              <div className="h-6 w-[1px] bg-slate-300 hidden sm:block"></div>
               <SiecLogo size="sm" variant="dark" align="center" className="!py-0" />
             </div>
             <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest leading-none">
-              Entidades de Certificación Autorizadas
+              Entidad de Certificación Autorizada
             </p>
           </div>
 
