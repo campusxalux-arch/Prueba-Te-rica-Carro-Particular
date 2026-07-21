@@ -18,7 +18,7 @@ const app = express();
 const PORT = 3000;
 const GOOGLE_APPS_SCRIPT_URL = 
   process.env.GOOGLE_APPS_SCRIPT_URL || 
-  "https://script.google.com/macros/s/AKfycbyIqA0w9m88r7HZMXeQEXvsPFvTK_qbG6QQLOgSWIoEk1TZqF90Ps66v2D-HirsEYNYOw/exec";
+  "https://script.google.com/macros/s/AKfycbxSALlUkUBg5jEXAjdufBoHd_hu1yvemimMHNzh4HKTKG4dO-lksOveEEbRBQwKH-BP/exec";
 
 // Parse JSON request bodies
 app.use(express.json());
