@@ -312,36 +312,22 @@ export default function ExamSession({ questions, onComplete, userName }: ExamSes
             })}
           </div>
 
-          {/* Immediate Evaluation Feedback banner */}
+          {/* Immediate Evaluation Feedback banner - Only shown for incorrect answers */}
           <AnimatePresence>
-            {isAnswered && (
+            {isAnswered && selectedOption !== currentQuestion.correctAnswer && (
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                className={`mt-6 p-4 rounded-2xl border flex items-center gap-3 ${
-                  selectedOption === currentQuestion.correctAnswer
-                    ? "bg-emerald-50 border-emerald-100 text-emerald-800"
-                    : "bg-orange-50 border-orange-200 text-orange-950"
-                }`}
+                className="mt-6 p-4 rounded-2xl border flex items-center gap-3 bg-orange-50 border-orange-200 text-orange-950"
               >
-                {selectedOption === currentQuestion.correctAnswer ? (
-                  <>
-                    <CheckCircle2 className="w-6 h-6 text-emerald-600 shrink-0" />
-                    <div>
-                      <h4 className="font-bold text-sm text-emerald-900">✅ ¡Respuesta Correcta!</h4>
-                      <p className="text-[11px] opacity-90 leading-tight">Excelente trabajo. Sigue así para asegurar tu aprobación.</p>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <XCircle className="w-6 h-6 text-orange-600 shrink-0" />
-                    <div>
-                      <h4 className="font-bold text-sm text-orange-900">❌ Respuesta Incorrecta</h4>
-                      <p className="text-[11px] opacity-90 leading-tight text-orange-950">La respuesta correcta era: <strong className="font-semibold text-orange-900">"{currentQuestion.options[currentQuestion.correctAnswer]}"</strong></p>
-                    </div>
-                  </>
-                )}
+                <XCircle className="w-6 h-6 text-orange-600 shrink-0" />
+                <div>
+                  <h4 className="font-bold text-sm text-orange-900">❌ Respuesta Incorrecta</h4>
+                  <p className="text-[11px] opacity-90 leading-tight text-orange-950">
+                    La respuesta correcta era: <strong className="font-semibold text-orange-900">"{currentQuestion.options[currentQuestion.correctAnswer]}"</strong>
+                  </p>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
