@@ -194,12 +194,11 @@ function fetchQuestionsFromDoc() {
 function saveResultsToSheets(data) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   
-  // 1. Obtener o crear hoja "Resultados"
-  let resSheet = ss.getSheetByName("Resultados");
-  if (!resSheet) {
-    resSheet = ss.insertSheet("Resultados");
-    // Crear cabecera para la hoja de resultados
-    resSheet.appendRow([
+  // 1. Obtener o crear Hoja 1: "Participante"
+  let partSheet = ss.getSheetByName("Participante");
+  if (!partSheet) {
+    partSheet = ss.insertSheet("Participante");
+    partSheet.appendRow([
       "Fecha", 
       "Hora", 
       "Tipo Identificación", 
@@ -211,57 +210,43 @@ function saveResultsToSheets(data) {
       "Tipo Licencia", 
       "Respuestas Correctas", 
       "Respuestas Incorrectas", 
-      "Puntaje (Sobre 100)", 
-      "Resultado", 
+      "Puntaje Global", 
+      "Resultado Global", 
       "Tiempo Empleado"
     ]);
-    resSheet.getRange("A1:N1").setFontWeight("bold").setBackground("#1e3a8a").setFontColor("white");
-  }
-  
-  // 2. Obtener o crear hoja "Detalles_Respuestas" para almacenar el detalle de las preguntas
-  let detailSheet = ss.getSheetByName("Detalles_Respuestas");
-  if (!detailSheet) {
-    detailSheet = ss.insertSheet("Detalles_Respuestas");
-    detailSheet.appendRow([
-      "Fecha", 
-      "Hora", 
-      "Número Identificación", 
-      "Nombre Completo", 
-      "Pregunta Número", 
-      "Pregunta Texto", 
-      "Respuesta Elegida", 
-      "¿Es Correcta?"
-    ]);
-    detailSheet.getRange("A1:H1").setFontWeight("bold").setBackground("#0f766e").setFontColor("white");
+    partSheet.getRange("A1:N1").setFontWeight("bold").setBackground("#1e3a8a").setFontColor("white");
   }
 
-  // 3. Obtener o crear hoja "Resultados_Por_Bloques" para almacenar estadísticas por bloques de preguntas
-  let blockSheet = ss.getSheetByName("Resultados_Por_Bloques");
-  if (!blockSheet) {
-    blockSheet = ss.insertSheet("Resultados_Por_Bloques");
-    blockSheet.appendRow([
-      "Fecha",
-      "Hora",
-      "Número Identificación",
-      "Nombre Completo",
-      "Bloque 1: Mecánica (Preguntas)",
-      "Bloque 1: Mecánica (Correctas)",
-      "Bloque 1: Mecánica (% Acierto)",
-      "Bloque 2: Seguridad Vial (Preguntas)",
-      "Bloque 2: Seguridad Vial (Correctas)",
-      "Bloque 2: Seguridad Vial (% Acierto)",
-      "Bloque 3: Normas de Tránsito (Preguntas)",
-      "Bloque 3: Normas de Tránsito (Correctas)",
-      "Bloque 3: Normas de Tránsito (% Acierto)"
+  // 2. Obtener o crear Hoja 2: "Resultados"
+  let resSheet = ss.getSheetByName("Resultados");
+  if (!resSheet) {
+    resSheet = ss.insertSheet("Resultados");
+    resSheet.appendRow([
+      "Fecha", 
+      "Hora", 
+      "Tipo Identificación", 
+      "Número Identificación", 
+      "Nombre Completo", 
+      "Edad", 
+      "Empresa", 
+      "Años Antigüedad", 
+      "Tipo Licencia", 
+      "% Mecánica", 
+      "% Situaciones de Conducción", 
+      "% Infraestructura", 
+      "% Normativa Vial", 
+      "Puntaje Global", 
+      "Resultado Global", 
+      "Tiempo Empleado"
     ]);
-    blockSheet.getRange("A1:M1").setFontWeight("bold").setBackground("#7c3aed").setFontColor("white");
+    resSheet.getRange("A1:P1").setFontWeight("bold").setBackground("#0f766e").setFontColor("white");
   }
-  
-  // Escribir fila en "Resultados"
+
   const fecha = data.fecha || new Date().toLocaleDateString();
   const hora = data.hora || new Date().toLocaleTimeString();
-  
-  resSheet.appendRow([
+
+  // Escribir fila en Hoja 1 "Participante"
+  partSheet.appendRow([
     fecha,
     hora,
     data.tipoIdentificacion,
@@ -274,81 +259,85 @@ function saveResultsToSheets(data) {
     data.correctas,
     data.incorrectas,
     data.puntaje,
-    data.resultado,
+    data.resultado, // "Aprobado" | "No aprobado"
     data.tiempoEmpleado
   ]);
 
-  // Escribir fila en "Resultados_Por_Bloques"
-  let b1Total = 0, b1Correct = 0;
-  let b2Total = 0, b2Correct = 0;
-  let b3Total = 0, b3Correct = 0;
+  // Calcular porcentajes por módulo para Hoja 2 "Resultados"
+  let mecTotal = 0, mecCorrect = 0;
+  let condTotal = 0, condCorrect = 0;
+  let infraTotal = 0, infraCorrect = 0;
+  let normTotal = 0, normCorrect = 0;
 
   if (data.detalles && Array.isArray(data.detalles)) {
     data.detalles.forEach(function(det) {
+      const cat = (det.category || "").toLowerCase();
       const qId = det.preguntaId || 0;
-      let block = 3;
-      if (qId >= 1 && qId <= 54) block = 1;
-      else if (qId >= 55 && qId <= 108) block = 2;
-      else if (qId >= 109 && qId <= 147) block = 3;
-      else {
-        const cat = (det.category || "").toLowerCase();
-        if (cat.indexOf("mecánica") !== -1 || cat.indexOf("mecanica") !== -1 || cat.indexOf("bloque 1") !== -1) block = 1;
-        else if (cat.indexOf("situación") !== -1 || cat.indexOf("situacion") !== -1 || cat.indexOf("vial") !== -1 || cat.indexOf("bloque 2") !== -1) block = 2;
+      const isCorrect = det.esCorrecta === true || det.esCorrecta === "SÍ" || det.esCorrecta === "SI";
+
+      let moduleType = "";
+      if (cat.indexOf("mecán") !== -1 || cat.indexOf("mecan") !== -1) {
+        moduleType = "mecanica";
+      } else if (cat.indexOf("situac") !== -1 || cat.indexOf("conduc") !== -1) {
+        moduleType = "conduccion";
+      } else if (cat.indexOf("infraestruc") !== -1) {
+        moduleType = "infraestructura";
+      } else if (cat.indexOf("normat") !== -1 || cat.indexOf("norma") !== -1 || cat.indexOf("vial") !== -1 || cat.indexOf("tránsito") !== -1 || cat.indexOf("transito") !== -1) {
+        moduleType = "normativa";
+      } else if (qId >= 1 && qId <= 8) {
+        moduleType = "mecanica";
+      } else if (qId >= 9 && qId <= 20) {
+        moduleType = "conduccion";
+      } else if (qId >= 21 && qId <= 30) {
+        moduleType = "infraestructura";
+      } else {
+        moduleType = "normativa";
       }
 
-      const isCorrect = det.esCorrecta === true || det.esCorrecta === "SÍ";
-      if (block === 1) {
-        b1Total++;
-        if (isCorrect) b1Correct++;
-      } else if (block === 2) {
-        b2Total++;
-        if (isCorrect) b2Correct++;
-      } else if (block === 3) {
-        b3Total++;
-        if (isCorrect) b3Correct++;
+      if (moduleType === "mecanica") {
+        mecTotal++;
+        if (isCorrect) mecCorrect++;
+      } else if (moduleType === "conduccion") {
+        condTotal++;
+        if (isCorrect) condCorrect++;
+      } else if (moduleType === "infraestructura") {
+        infraTotal++;
+        if (isCorrect) infraCorrect++;
+      } else if (moduleType === "normativa") {
+        normTotal++;
+        if (isCorrect) normCorrect++;
       }
     });
   }
 
-  const b1Pct = b1Total > 0 ? Math.round((b1Correct / b1Total) * 100) : 0;
-  const b2Pct = b2Total > 0 ? Math.round((b2Correct / b2Total) * 100) : 0;
-  const b3Pct = b3Total > 0 ? Math.round((b3Correct / b3Total) * 100) : 0;
+  const mecPct = mecTotal > 0 ? Math.round((mecCorrect / mecTotal) * 100) : 0;
+  const condPct = condTotal > 0 ? Math.round((condCorrect / condTotal) * 100) : 0;
+  const infraPct = infraTotal > 0 ? Math.round((infraCorrect / infraTotal) * 100) : 0;
+  const normPct = normTotal > 0 ? Math.round((normCorrect / normTotal) * 100) : 0;
 
-  blockSheet.appendRow([
+  // Escribir fila en Hoja 2 "Resultados"
+  resSheet.appendRow([
     fecha,
     hora,
+    data.tipoIdentificacion,
     data.numeroIdentificacion,
     data.nombreCompleto,
-    b1Total,
-    b1Correct,
-    b1Pct + "%",
-    b2Total,
-    b2Correct,
-    b2Pct + "%",
-    b3Total,
-    b3Correct,
-    b3Pct + "%"
+    data.edad,
+    data.empresa,
+    data.antiguedad,
+    data.tipoLicencia,
+    mecPct + "%",
+    condPct + "%",
+    infraPct + "%",
+    normPct + "%",
+    data.puntaje,
+    data.resultado, // "Aprobado" | "No aprobado"
+    data.tiempoEmpleado
   ]);
-  
-  // Escribir el detalle de las preguntas respondidas si están incluidas en el payload
-  if (data.detalles && Array.isArray(data.detalles)) {
-    data.detalles.forEach((det, index) => {
-      detailSheet.appendRow([
-        fecha,
-        hora,
-        data.numeroIdentificacion,
-        data.nombreCompleto,
-        index + 1,
-        det.pregunta,
-        det.elegida,
-        det.esCorrecta ? "SÍ" : "NO"
-      ]);
-    });
-  }
-  
+
   return {
-    rowsAdded: 1,
-    detailsAdded: data.detalles ? data.detalles.length : 0
+    participanteAdded: 1,
+    resultadosAdded: 1
   };
 }
 
