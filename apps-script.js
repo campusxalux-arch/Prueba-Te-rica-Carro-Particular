@@ -198,21 +198,23 @@ function saveResultsToSheets(data) {
   let partSheet = ss.getSheetByName("Participante");
   if (!partSheet) {
     partSheet = ss.insertSheet("Participante");
+  }
+  if (partSheet.getLastRow() === 0) {
     partSheet.appendRow([
-      "Fecha", 
-      "Hora", 
-      "Tipo Identificación", 
-      "Número Identificación", 
-      "Nombre Completo", 
-      "Edad", 
-      "Empresa", 
-      "Años Antigüedad", 
-      "Tipo Licencia", 
-      "Respuestas Correctas", 
-      "Respuestas Incorrectas", 
-      "Puntaje Global", 
-      "Resultado Global", 
-      "Tiempo Empleado"
+      "FECHA", 
+      "HORA", 
+      "TIPO IDENTIFICACIÓN", 
+      "NÚMERO IDENTIFICACIÓN", 
+      "NOMBRE COMPLETO", 
+      "EDAD", 
+      "EMPRESA", 
+      "AÑOS ANTIGÜEDAD", 
+      "TIPO LICENCIA", 
+      "RESPUESTAS CORRECTAS", 
+      "RESPUESTAS INCORRECTAS", 
+      "PUNTAJE GLOBAL (%)", 
+      "RESULTADO GLOBAL", 
+      "TIEMPO EMPLEADO"
     ]);
     partSheet.getRange("A1:N1").setFontWeight("bold").setBackground("#1e3a8a").setFontColor("white");
   }
@@ -221,23 +223,25 @@ function saveResultsToSheets(data) {
   let resSheet = ss.getSheetByName("Resultados");
   if (!resSheet) {
     resSheet = ss.insertSheet("Resultados");
+  }
+  if (resSheet.getLastRow() === 0) {
     resSheet.appendRow([
-      "Fecha", 
-      "Hora", 
-      "Tipo Identificación", 
-      "Número Identificación", 
-      "Nombre Completo", 
-      "Edad", 
-      "Empresa", 
-      "Años Antigüedad", 
-      "Tipo Licencia", 
-      "% Mecánica", 
-      "% Situaciones de Conducción", 
-      "% Infraestructura", 
-      "% Normativa Vial", 
-      "Puntaje Global", 
-      "Resultado Global", 
-      "Tiempo Empleado"
+      "FECHA", 
+      "HORA", 
+      "TIPO IDENTIFICACIÓN", 
+      "NÚMERO IDENTIFICACIÓN", 
+      "NOMBRE COMPLETO", 
+      "EDAD", 
+      "EMPRESA", 
+      "AÑOS ANTIGÜEDAD", 
+      "TIPO LICENCIA", 
+      "PORCENTAJE MECÁNICA", 
+      "PORCENTAJE SITUACIONES DE CONDUCCIÓN", 
+      "PORCENTAJE INFRAESTRUCTURA", 
+      "PORCENTAJE NORMATIVA VIAL", 
+      "PUNTAJE GLOBAL (%)", 
+      "RESULTADO GLOBAL", 
+      "TIEMPO EMPLEADO"
     ]);
     resSheet.getRange("A1:P1").setFontWeight("bold").setBackground("#0f766e").setFontColor("white");
   }

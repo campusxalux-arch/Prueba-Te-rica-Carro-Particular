@@ -124,8 +124,13 @@ export async function writeResultsToSheets(
       }
     }
 
-    // Step 3: Write headers to "Participante" if missing or newly created
-    if (!hasParticipante) {
+    // Step 3: Check if headers exist or if row 1 is empty in "Participante"
+    const partHeadCheck = await fetch(
+      `https://sheets.googleapis.com/v1/spreadsheets/${parsedSpreadsheetId}/values/Participante!A1:N1`,
+      { headers }
+    );
+    const partHeadData = partHeadCheck.ok ? await partHeadCheck.json() : null;
+    if (!partHeadData || !partHeadData.values || partHeadData.values.length === 0) {
       await fetch(
         `https://sheets.googleapis.com/v1/spreadsheets/${parsedSpreadsheetId}/values/Participante!A1:N1?valueInputOption=USER_ENTERED`,
         {
@@ -133,28 +138,33 @@ export async function writeResultsToSheets(
           headers,
           body: JSON.stringify({
             values: [[
-              "Fecha", 
-              "Hora", 
-              "Tipo Identificación", 
-              "Número Identificación", 
-              "Nombre Completo", 
-              "Edad", 
-              "Empresa", 
-              "Años Antigüedad", 
-              "Tipo Licencia", 
-              "Respuestas Correctas", 
-              "Respuestas Incorrectas", 
-              "Puntaje Global", 
-              "Resultado Global", 
-              "Tiempo Empleado"
+              "FECHA", 
+              "HORA", 
+              "TIPO IDENTIFICACIÓN", 
+              "NÚMERO IDENTIFICACIÓN", 
+              "NOMBRE COMPLETO", 
+              "EDAD", 
+              "EMPRESA", 
+              "AÑOS ANTIGÜEDAD", 
+              "TIPO LICENCIA", 
+              "RESPUESTAS CORRECTAS", 
+              "RESPUESTAS INCORRECTAS", 
+              "PUNTAJE GLOBAL (%)", 
+              "RESULTADO GLOBAL", 
+              "TIEMPO EMPLEADO"
             ]]
           })
         }
       );
     }
 
-    // Step 4: Write headers to "Resultados" if missing or newly created
-    if (!hasResultados) {
+    // Step 4: Check if headers exist or if row 1 is empty in "Resultados"
+    const resHeadCheck = await fetch(
+      `https://sheets.googleapis.com/v1/spreadsheets/${parsedSpreadsheetId}/values/Resultados!A1:P1`,
+      { headers }
+    );
+    const resHeadData = resHeadCheck.ok ? await resHeadCheck.json() : null;
+    if (!resHeadData || !resHeadData.values || resHeadData.values.length === 0) {
       await fetch(
         `https://sheets.googleapis.com/v1/spreadsheets/${parsedSpreadsheetId}/values/Resultados!A1:P1?valueInputOption=USER_ENTERED`,
         {
@@ -162,22 +172,22 @@ export async function writeResultsToSheets(
           headers,
           body: JSON.stringify({
             values: [[
-              "Fecha", 
-              "Hora", 
-              "Tipo Identificación", 
-              "Número Identificación", 
-              "Nombre Completo", 
-              "Edad", 
-              "Empresa", 
-              "Años Antigüedad", 
-              "Tipo Licencia", 
-              "% Mecánica", 
-              "% Situaciones de Conducción", 
-              "% Infraestructura", 
-              "% Normativa Vial", 
-              "Puntaje Global", 
-              "Resultado Global", 
-              "Tiempo Empleado"
+              "FECHA", 
+              "HORA", 
+              "TIPO IDENTIFICACIÓN", 
+              "NÚMERO IDENTIFICACIÓN", 
+              "NOMBRE COMPLETO", 
+              "EDAD", 
+              "EMPRESA", 
+              "AÑOS ANTIGÜEDAD", 
+              "TIPO LICENCIA", 
+              "PORCENTAJE MECÁNICA", 
+              "PORCENTAJE SITUACIONES DE CONDUCCIÓN", 
+              "PORCENTAJE INFRAESTRUCTURA", 
+              "PORCENTAJE NORMATIVA VIAL", 
+              "PUNTAJE GLOBAL (%)", 
+              "RESULTADO GLOBAL", 
+              "TIEMPO EMPLEADO"
             ]]
           })
         }
