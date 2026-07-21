@@ -8,12 +8,12 @@ export interface Question {
   question: string;
   options: string[];
   correctAnswer: number; // 0-indexed (0 to 3)
-  category: string;
+  category: "Mecánica" | "Situaciones de conducción" | "Infraestructura" | "Normativa vial";
 }
 
 export const QUESTION_BANK: Question[] = [
   // ==========================================
-  // BLOQUE 1: Mecánica Básica (Preguntas 1 a 54)
+  // MÓDULO 1: Mecánica
   // ==========================================
   {
     id: 1,
@@ -25,7 +25,7 @@ export const QUESTION_BANK: Question[] = [
       "El filtro de aceite se encuentra totalmente obstruido por hollín."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ export const QUESTION_BANK: Question[] = [
       "El distribuidor de corriente."
     ],
     correctAnswer: 2,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 3,
@@ -49,7 +49,7 @@ export const QUESTION_BANK: Question[] = [
       "Presencia de burbujas de aire o humedad en las líneas del líquido de frenos."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 4,
@@ -61,7 +61,7 @@ export const QUESTION_BANK: Question[] = [
       "Enfriar los gases calientes antes de salir por el múltiple de escape."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 5,
@@ -73,7 +73,7 @@ export const QUESTION_BANK: Question[] = [
       "Llevar el vehículo con exceso de carga en el baúl de forma continua."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 6,
@@ -85,7 +85,7 @@ export const QUESTION_BANK: Question[] = [
       "Mantener las ruedas perfectamente paralelas entre sí durante el frenado."
     ],
     correctAnswer: 2,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 7,
@@ -97,7 +97,7 @@ export const QUESTION_BANK: Question[] = [
       "Semanalmente o antes de emprender un viaje largo por carretera."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 8,
@@ -109,7 +109,7 @@ export const QUESTION_BANK: Question[] = [
       "Que es necesario realizar un balanceo urgente pero no un cambio de llanta."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 9,
@@ -121,7 +121,7 @@ export const QUESTION_BANK: Question[] = [
       "Evitar que el vehículo se ruede hacia atrás al iniciar la marcha en pendientes."
     ],
     correctAnswer: 2,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 10,
@@ -133,7 +133,7 @@ export const QUESTION_BANK: Question[] = [
       "Desgaste en los anillos de los pistones o sellos de válvulas, lo que hace que el motor queme aceite lubricante."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 11,
@@ -145,7 +145,7 @@ export const QUESTION_BANK: Question[] = [
       "El retén del cigüeñal."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 12,
@@ -157,7 +157,7 @@ export const QUESTION_BANK: Question[] = [
       "Es un compuesto higroscópico que absorbe humedad del aire, lo que baja su punto de ebullición y genera burbujas."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 13,
@@ -169,7 +169,7 @@ export const QUESTION_BANK: Question[] = [
       "Perforación inmediata del radiador por alta temperatura."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 14,
@@ -181,7 +181,7 @@ export const QUESTION_BANK: Question[] = [
       "Activar de manera automática las luces de estacionamiento traseras."
     ],
     correctAnswer: 2,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 15,
@@ -193,7 +193,7 @@ export const QUESTION_BANK: Question[] = [
       "Refrigeración del motor."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 16,
@@ -205,7 +205,7 @@ export const QUESTION_BANK: Question[] = [
       "Rellenar el depósito del líquido de la dirección."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 17,
@@ -217,7 +217,7 @@ export const QUESTION_BANK: Question[] = [
       "Porque puede derretir las mangueras de caucho del sistema debido a su acidez."
     ],
     correctAnswer: 1,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 18,
@@ -229,7 +229,7 @@ export const QUESTION_BANK: Question[] = [
       "El convertidor catalítico."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 19,
@@ -241,7 +241,7 @@ export const QUESTION_BANK: Question[] = [
       "Filtrar las impurezas gruesas presentes en el aire exterior."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 20,
@@ -253,7 +253,7 @@ export const QUESTION_BANK: Question[] = [
       "El mecanismo hidráulico encargado de accionar la caja de velocidades."
     ],
     correctAnswer: 2,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 21,
@@ -265,7 +265,7 @@ export const QUESTION_BANK: Question[] = [
       "Que hay una fuga masiva de presión en la bomba auxiliar."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 22,
@@ -277,7 +277,7 @@ export const QUESTION_BANK: Question[] = [
       "Regular la salida de corriente alterna del sistema eléctrico central."
     ],
     correctAnswer: 1,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 23,
@@ -289,7 +289,7 @@ export const QUESTION_BANK: Question[] = [
       "Evitar que las llantas delanteras patinen al acelerar bruscamente en mojado."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 24,
@@ -301,7 +301,7 @@ export const QUESTION_BANK: Question[] = [
       "Obstrucción en la válvula IAC (válvula de control de ralentí) o filtro de aire muy sucio."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 25,
@@ -313,7 +313,7 @@ export const QUESTION_BANK: Question[] = [
       "La barra estabilizadora."
     ],
     correctAnswer: 2,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 26,
@@ -325,7 +325,7 @@ export const QUESTION_BANK: Question[] = [
       "El recalentamiento repentino de los neumáticos por circular en clima húmedo."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 27,
@@ -337,7 +337,7 @@ export const QUESTION_BANK: Question[] = [
       "Controlar y disipar las oscilaciones de los resortes o espirales para mantener las ruedas pegadas al asfalto."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 28,
@@ -349,7 +349,7 @@ export const QUESTION_BANK: Question[] = [
       "La fecha de vencimiento y de envasado seguro del producto."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 29,
@@ -361,7 +361,7 @@ export const QUESTION_BANK: Question[] = [
       "Cardán."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 30,
@@ -373,7 +373,7 @@ export const QUESTION_BANK: Question[] = [
       "Continuar conduciendo lentamente hasta llegar al taller mecánico más cercano."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 31,
@@ -385,7 +385,7 @@ export const QUESTION_BANK: Question[] = [
       "Retener impurezas, partículas sólidas y agua presentes en el combustible para proteger la bomba e inyectores."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 32,
@@ -397,7 +397,7 @@ export const QUESTION_BANK: Question[] = [
       "La dirección del auto se controla mediante el eje trasero."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 33,
@@ -409,7 +409,7 @@ export const QUESTION_BANK: Question[] = [
       "El cárter de aceite primario."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 34,
@@ -421,7 +421,7 @@ export const QUESTION_BANK: Question[] = [
       "Multiplicar el esfuerzo del conductor sobre el pedal de freno para lograr una frenada más suave y potente."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 35,
@@ -433,7 +433,7 @@ export const QUESTION_BANK: Question[] = [
       "Ningún desgaste físico apreciable si se mantienen las llantas bien infladas."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 36,
@@ -445,7 +445,7 @@ export const QUESTION_BANK: Question[] = [
       "Una mala conducción de la corriente eléctrica que puede impedir que el auto encienda o descargue la batería."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 37,
@@ -457,7 +457,7 @@ export const QUESTION_BANK: Question[] = [
       "Transmitir la chispa de encendido de forma uniforme a cada cilindro."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 38,
@@ -469,7 +469,7 @@ export const QUESTION_BANK: Question[] = [
       "El sistema de dirección de cremallera."
     ],
     correctAnswer: 1,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 39,
@@ -481,7 +481,7 @@ export const QUESTION_BANK: Question[] = [
       "Las ruedas del eje trasero de forma mecánica e independiente del sistema hidráulico del pedal."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 40,
@@ -493,7 +493,7 @@ export const QUESTION_BANK: Question[] = [
       "Que hay presencia de sedimentos gruesos en el filtro de gasolina principal."
     ],
     correctAnswer: 1,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 41,
@@ -505,7 +505,7 @@ export const QUESTION_BANK: Question[] = [
       "La aplicación directa de presión neumática sobre la banda de rodamiento del neumático."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 42,
@@ -517,7 +517,7 @@ export const QUESTION_BANK: Question[] = [
       "Para regular la presión interna de los neumáticos motrices delanteros."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 43,
@@ -529,7 +529,7 @@ export const QUESTION_BANK: Question[] = [
       "Semiejes (o juntas homocinéticas)."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 44,
@@ -541,7 +541,7 @@ export const QUESTION_BANK: Question[] = [
       "Cámber (caída de rueda)."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 45,
@@ -553,7 +553,7 @@ export const QUESTION_BANK: Question[] = [
       "Enfriar el refrigerante recirculado desde el cárter primario."
     ],
     correctAnswer: 1,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 46,
@@ -565,7 +565,7 @@ export const QUESTION_BANK: Question[] = [
       "El punto de ebullición del fluido certificado por el Departamento de Transporte."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 47,
@@ -577,7 +577,7 @@ export const QUESTION_BANK: Question[] = [
       "Los bornes de conexión rápida de la batería están sueltos o sulfatados."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 48,
@@ -589,7 +589,7 @@ export const QUESTION_BANK: Question[] = [
       "Separar las moléculas de agua mineralizada presentes en el tanque de combustible."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 49,
@@ -601,11 +601,11 @@ export const QUESTION_BANK: Question[] = [
       "Tienen una capa interna de goma autosellante que elimina el uso de un neumático de caucho interior suelto."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 50,
-    question: "Está estrictamente prohibido por razones de seguridad técnica descender una pendiente prolongada con la caja de velocidades en neutro debido a:",
+    question: "Está strictly prohibido por razones de seguridad técnica descender una pendiente prolongada con la caja de velocidades en neutro debido a:",
     options: [
       "La pérdida del freno de motor que obliga a abusar de los frenos de servicio, lo que genera recalentamiento y posible fallo total.",
       "El incremento incontrolado de consumo de gasolina por el ralentí del alternador.",
@@ -613,7 +613,7 @@ export const QUESTION_BANK: Question[] = [
       "El desgaste severo e irreversible de las juntas homocinéticas de la dirección."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 51,
@@ -625,7 +625,7 @@ export const QUESTION_BANK: Question[] = [
       "Que la vida útil de las celdas de litio de la batería ha llegado a su límite."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 52,
@@ -637,7 +637,7 @@ export const QUESTION_BANK: Question[] = [
       "El filtro del aire acondicionado de cabina."
     ],
     correctAnswer: 2,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 53,
@@ -649,7 +649,7 @@ export const QUESTION_BANK: Question[] = [
       "Usar llantas que no han sido balanceadas dinámicamente en un taller certificado."
     ],
     correctAnswer: 0,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
   {
     id: 54,
@@ -661,11 +661,11 @@ export const QUESTION_BANK: Question[] = [
       "La bobina de encendido."
     ],
     correctAnswer: 3,
-    category: "Bloque 1: Mecánica Básica"
+    category: "Mecánica"
   },
 
   // ==========================================
-  // BLOQUE 2: Situaciones y Seguridad Vial (Preguntas 55 a 108)
+  // MÓDULO 2: Situaciones de conducción
   // ==========================================
   {
     id: 55,
@@ -677,19 +677,7 @@ export const QUESTION_BANK: Question[] = [
       "Encender de igual manera sus luces estacionarias y orillarse sin disminuir la velocidad."
     ],
     correctAnswer: 0,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
-  },
-  {
-    id: 56,
-    question: "Ante un semáforo que parpadea intermitentemente en color amarillo, ¿qué conducta debe asumir el conductor?",
-    options: [
-      "Detener el vehículo por completo y esperar a que el semáforo cambie a color verde.",
-      "Continuar la marcha manteniendo la velocidad máxima del carril de forma constante.",
-      "Acelerar para cruzar la intersección lo más rápido posible ante el cambio de fase del semáforo.",
-      "Avanzar con precaución, disminuyendo la velocidad y estando atento a ceder el paso a peatones u otros vehículos con prelación."
-    ],
-    correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 57,
@@ -701,19 +689,7 @@ export const QUESTION_BANK: Question[] = [
       "Utilizar las luces de cruce (luces bajas) acompañadas de los faros antiniebla si el vehículo dispone de ellos, evitando deslumbramientos."
     ],
     correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
-  },
-  {
-    id: 58,
-    question: "De acuerdo con las normas de tránsito de Colombia, al aproximarse a una intersección vial donde no hay señalización de prioridad, ¿quién tiene la prelación de paso?",
-    options: [
-      "El vehículo que se aproxima por el costado derecho del conductor.",
-      "El vehículo de mayor tamaño o peso de carga que transite por la vía principal.",
-      "Aquel conductor que use primero la bocina y realice señales de luces altas.",
-      "El vehículo que continúe recto sin importar el costado por donde venga cruzando."
-    ],
-    correctAnswer: 0,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 59,
@@ -725,7 +701,7 @@ export const QUESTION_BANK: Question[] = [
       "La distancia física que debe mantener de forma obligatoria con respecto al vehículo delantero."
     ],
     correctAnswer: 1,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 60,
@@ -737,7 +713,7 @@ export const QUESTION_BANK: Question[] = [
       "Pisar el embrague y el acelerador al mismo tiempo para recuperar la velocidad motriz."
     ],
     correctAnswer: 0,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 61,
@@ -749,19 +725,7 @@ export const QUESTION_BANK: Question[] = [
       "Continuar con la marcha normal esquivándolo por el carril opuesto de manera progresiva."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
-  },
-  {
-    id: 62,
-    question: "Al aproximarse a una glorieta o rotonda de un solo carril, ¿quién tiene la prioridad o prelación de paso legal?",
-    options: [
-      "El vehículo que pretenda ingresar primero a la glorieta por el acceso derecho.",
-      "El vehículo de servicio público o de carga que venga por una avenida de dos carriles.",
-      "Aquel vehículo que transite a mayor velocidad media dentro de la vía de aproximación.",
-      "El vehículo que ya se encuentra circulando dentro de la glorieta con respecto a los que pretenden ingresar."
-    ],
-    correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 63,
@@ -773,7 +737,7 @@ export const QUESTION_BANK: Question[] = [
       "Permanecer dentro del vehículo con las puertas abiertas esperando auxilio vial pasivo."
     ],
     correctAnswer: 0,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 64,
@@ -785,7 +749,7 @@ export const QUESTION_BANK: Question[] = [
       "Proteger el lugar del accidente, Avisar a los servicios de emergencia, Socorrer a los lesionados."
     ],
     correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 65,
@@ -797,7 +761,7 @@ export const QUESTION_BANK: Question[] = [
       "Un síntoma propio únicamente de personas con problemas crónicos de insomnio."
     ],
     correctAnswer: 0,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 66,
@@ -809,43 +773,7 @@ export const QUESTION_BANK: Question[] = [
       "No altera las capacidades psicomotoras del conductor si se consumen alimentos antes de marchar."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
-  },
-  {
-    id: 67,
-    question: "Al ingresar a una autopista a través de un carril de incorporación (carril de aceleración), el conductor debe:",
-    options: [
-      "Avanzar lentamente y detenerse al inicio del carril esperando que no transite ningún auto.",
-      "Acelerar a fondo cruzándose de forma rápida sin mirar los espejos retrovisores.",
-      "Ingresar inmediatamente tocando la bocina para exigir que le abran el paso prioritario.",
-      "Evaluar la velocidad del tránsito por los retrovisores, acelerar adecuadamente para igualar la velocidad e incorporarse sin entorpecer."
-    ],
-    correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
-  },
-  {
-    id: 68,
-    question: "De acuerdo con el Código Nacional de Tránsito, es obligatorio el uso del cinturón de seguridad en los asientos traseros:",
-    options: [
-      "En todos los vehículos fabricados a partir del año 2004 en cualquier calzada nacional, departamental o municipal.",
-      "Únicamente cuando se transite por carreteras nacionales o autopistas nacionales de alta velocidad.",
-      "Solamente si viajan personas de la tercera edad o mujeres en estado de gestación.",
-      "En ningún caso el uso del cinturón en asientos traseros es sancionable en zonas urbanas."
-    ],
-    correctAnswer: 0,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
-  },
-  {
-    id: 69,
-    question: "¿Cuál es el límite máximo de velocidad permitido para vehículos particulares que transitan por carreteras nacionales o autopistas en Colombia?",
-    options: [
-      "90 km/h de forma generalizada sin importar las condiciones del clima.",
-      "100 km/h en todas las autopistas nacionales de manera uniforme.",
-      "140 km/h si la vía cuenta con doble calzada y barreras físicas medianas.",
-      "120 km/h siempre que las condiciones de seguridad vial y la señalización reglamentaria lo permitan."
-    ],
-    correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 70,
@@ -857,7 +785,7 @@ export const QUESTION_BANK: Question[] = [
       "La pérdida momentánea de visibilidad por deslumbramiento de luces altas contrarias."
     ],
     correctAnswer: 1,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 71,
@@ -869,7 +797,7 @@ export const QUESTION_BANK: Question[] = [
       "Mejorar su propio campo de visión hacia adelante y evitar los puntos ciegos del conductor del camión."
     ],
     correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 72,
@@ -881,7 +809,7 @@ export const QUESTION_BANK: Question[] = [
       "La pérdida total de lubricación en las juntas de la columna de dirección."
     ],
     correctAnswer: 0,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 73,
@@ -893,19 +821,7 @@ export const QUESTION_BANK: Question[] = [
       "Una mejor visibilidad lateral en condiciones adversas de clima."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
-  },
-  {
-    id: 74,
-    question: "Al aproximarse a un cruce ferroviario a nivel (paso de tren) sin barreras físicas instaladas, el conductor debe:",
-    options: [
-      "Cruzar lo más rápido posible tocando insistentemente la bocina para advertir.",
-      "Encender las luces de parqueo y continuar la marcha sin detenerse.",
-      "Detener el vehículo por completo a una distancia prudente, apagar el radio, escuchar y mirar en ambos sentidos antes de avanzar.",
-      "Avanzar despacio de forma diagonal para evitar golpes en el chasis."
-    ],
-    correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 75,
@@ -917,7 +833,7 @@ export const QUESTION_BANK: Question[] = [
       "Sujetar la cabeza del conductor en maniobras de giros pronunciados."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 76,
@@ -929,7 +845,7 @@ export const QUESTION_BANK: Question[] = [
       "Desgaste innecesario y prematuro del mecanismo interno de embrague y pérdida de control del frenado por motor."
     ],
     correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 77,
@@ -941,7 +857,7 @@ export const QUESTION_BANK: Question[] = [
       "Lanzar el vehículo hacia la berma lateral sin frenar para que se detenga por fricción."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 78,
@@ -953,7 +869,7 @@ export const QUESTION_BANK: Question[] = [
       "Tener los espejos retrovisores laterales descalibrados hacia adentro."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 79,
@@ -965,19 +881,7 @@ export const QUESTION_BANK: Question[] = [
       "Activar la luz direccional izquierda con anticipación, verificar retrovisores y realizar la maniobra en zona permitida con línea discontinua."
     ],
     correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
-  },
-  {
-    id: 80,
-    question: "¿Qué indica la presencia de una luz roja intermitente instalada en un paso a nivel ferroviario o puente móvil?",
-    options: [
-      "Que el paso está habilitado avanzando con máxima precaución.",
-      "Que el semáforo se encuentra fuera de servicio de forma indefinida.",
-      "Prohibición de paso inminente; equivale a un Pare obligatorio debido a la aproximación de un tren o maniobra de puente.",
-      "Un aviso reglamentario exclusivo para vehículos de carga pesada."
-    ],
-    correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 81,
@@ -989,7 +893,7 @@ export const QUESTION_BANK: Question[] = [
       "La distancia con respecto al vehículo trasero más el espacio de seguridad delantero."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 82,
@@ -1001,7 +905,7 @@ export const QUESTION_BANK: Question[] = [
       "Registrar de forma continua la velocidad y el historial de viajes del auto."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 83,
@@ -1013,19 +917,7 @@ export const QUESTION_BANK: Question[] = [
       "Únicamente bajo supervisión expresa de un agente de tránsito o auxiliar de vía."
     ],
     correctAnswer: 0,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
-  },
-  {
-    id: 84,
-    question: "El mantenimiento preventivo periódico de la presión de inflado de las llantas debe realizarse:",
-    options: [
-      "Únicamente en época de verano por evaporación térmica del nitrógeno.",
-      "Solo cuando se note visualmente que una llanta ha perdido volumen.",
-      "En frío, por lo menos una vez cada quince días, siguiendo las especificaciones técnicas del manual del fabricante.",
-      "Durante la Revisión Técnico-Mecánica obligatoria cada año calendario."
-    ],
-    correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 85,
@@ -1037,7 +929,7 @@ export const QUESTION_BANK: Question[] = [
       "Reduce drásticamente el ángulo de visión lateral (se produce el llamado efecto túnel) limitando la visión de costados."
     ],
     correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 86,
@@ -1049,7 +941,7 @@ export const QUESTION_BANK: Question[] = [
       "Esquivarlo cruzando al carril opuesto de manera ágil sin detener su marcha."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 87,
@@ -1061,7 +953,7 @@ export const QUESTION_BANK: Question[] = [
       "Refleje el techo interior del vehículo para controlar la comodidad de cabina."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 88,
@@ -1073,19 +965,7 @@ export const QUESTION_BANK: Question[] = [
       "Inestabilidad, aumento de resistencia al aire y elevación del centro de gravedad, elevando el riesgo de vuelco e incrementando el consumo."
     ],
     correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
-  },
-  {
-    id: 89,
-    question: "Al encontrarse con un retén o puesto de control de la Policía de Tránsito en la vía, el conductor debe:",
-    options: [
-      "Acelerar para evitar demoras innecesarias si tiene toda su documentación vigente.",
-      "Encender de inmediato luces altas y bocinas cruzándose de carril de forma ágil.",
-      "Orillarse lentamente y salir corriendo a entregar los papeles al oficial de guardia.",
-      "Disminuir la velocidad de manera progresiva, seguir las indicaciones del oficial, detenerse de forma segura y colaborar con la autoridad."
-    ],
-    correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 90,
@@ -1097,7 +977,7 @@ export const QUESTION_BANK: Question[] = [
       "Que el fango adherido altera el balanceo de la rueda, genera vibraciones fuertes en la marcha y anula el agarre mecánico sobre asfalto."
     ],
     correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 91,
@@ -1109,7 +989,7 @@ export const QUESTION_BANK: Question[] = [
       "Una infracción meramente administrativa que no genera accidentes reales."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 92,
@@ -1121,31 +1001,7 @@ export const QUESTION_BANK: Question[] = [
       "Pisar con fuerza únicamente el pedal del embrague esperando que el motor retenga."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
-  },
-  {
-    id: 93,
-    question: "Los sistemas de retención infantil (sillas de seguridad para bebés y niños pequeños) deben ser instalados:",
-    options: [
-      "En el asiento delantero si va acompañado por una persona adulta responsable.",
-      "Encima de las piernas del copiloto asegurados con el cinturón primario.",
-      "En el asiento trasero central únicamente utilizando cinturones de dos puntos.",
-      "Obligatoriamente en los asientos traseros del vehículo, fijados de manera segura mediante sistemas ISOFIX o el cinturón de seguridad de tres puntos."
-    ],
-    correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
-  },
-  {
-    id: 94,
-    question: "Al aproximarse a una glorieta de dos carriles, si usted tiene la intención de tomar la tercera salida (giro a la izquierda), debe:",
-    options: [
-      "Ingresar por el carril derecho de aproximación y mantenerse por fuera de la rotonda.",
-      "Avanzar recto cortando camino por la zona central ajardinada de la glorieta.",
-      "Ingresar por el carril izquierdo, circular por la zona interna de la glorieta y pasar con cuidado al carril externo antes de salir.",
-      "Hacer señales con la bocina y cruzar de manera transversal sin importar carriles."
-    ],
-    correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 95,
@@ -1157,7 +1013,7 @@ export const QUESTION_BANK: Question[] = [
       "Anticiparse a los posibles errores de los demás usuarios de la vía y reaccionar de forma segura previniendo colisiones."
     ],
     correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 96,
@@ -1169,7 +1025,7 @@ export const QUESTION_BANK: Question[] = [
       "Disminuir la velocidad y desviar su mirada ligeramente hacia el borde derecho de la calzada (línea de demarcación de la berma) para guiarse."
     ],
     correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 97,
@@ -1181,7 +1037,7 @@ export const QUESTION_BANK: Question[] = [
       "Cincuenta metros constantes sin importar la velocidad de la vía."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 98,
@@ -1193,7 +1049,7 @@ export const QUESTION_BANK: Question[] = [
       "Disminuir velocidad, cambiarse de carril respetando la separación mínima de 1.5 metros de distancia lateral con respecto al ciclista para su seguridad."
     ],
     correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 99,
@@ -1205,7 +1061,7 @@ export const QUESTION_BANK: Question[] = [
       "Varía únicamente de noche por el cansancio físico acumulado del conductor."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 100,
@@ -1217,7 +1073,7 @@ export const QUESTION_BANK: Question[] = [
       "Llevar un triángulo de seguridad metálico en cada una de sus manos como escudo."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 101,
@@ -1229,7 +1085,7 @@ export const QUESTION_BANK: Question[] = [
       "Mantener pisado de manera constante el pedal de freno acelerando progresivamente."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 102,
@@ -1241,7 +1097,7 @@ export const QUESTION_BANK: Question[] = [
       "Retener de forma segura el torso y la pelvis del ocupante ante un impacto, distribuyendo la fuerza de retención en partes sólidas del cuerpo."
     ],
     correctAnswer: 3,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 103,
@@ -1253,7 +1109,7 @@ export const QUESTION_BANK: Question[] = [
       "Seguirlo de cerca bloqueándole los adelantamientos para calmar su ritmo."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 104,
@@ -1265,31 +1121,7 @@ export const QUESTION_BANK: Question[] = [
       "La cantidad de agua pura ingerida inmediatamente después del consumo alcohólico."
     ],
     correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
-  },
-  {
-    id: 105,
-    question: "La distancia mínima de parqueo permitida por la reglamentación colombiana con respecto a un hidrante de bomberos es de:",
-    options: [
-      "Dos (2) metros constantes en calzadas secundarias urbanas.",
-      "Un (1) metro siempre que el conductor permanezca dentro de la cabina.",
-      "Cinco (5) metros libres para garantizar el acceso rápido de emergencia en incendios.",
-      "Diez (10) metros en cualquier tipo de vía principal o autopista nacional."
-    ],
-    correctAnswer: 2,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
-  },
-  {
-    id: 106,
-    question: "¿Qué indica la presencia de una línea continua blanca pintada sobre el borde derecho de la calzada de asfalto?",
-    options: [
-      "Delimita el borde exterior transitable de la vía, separando la calzada de la berma o zona exterior.",
-      "Prohibición estricta de adelantar por el costado izquierdo de la vía.",
-      "Un carril exclusivo para el uso de transportes masivos de servicio público.",
-      "Zonas habilitadas exclusivamente para estacionar vehículos particulares."
-    ],
-    correctAnswer: 0,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
   },
   {
     id: 107,
@@ -1301,7 +1133,119 @@ export const QUESTION_BANK: Question[] = [
       "Al alcanzar una distancia de separación de al menos tres metros del auto."
     ],
     correctAnswer: 0,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
+    category: "Situaciones de conducción"
+  },
+
+  // ==========================================
+  // MÓDULO 3: Infraestructura
+  // ==========================================
+  {
+    id: 56,
+    question: "Ante un semáforo que parpadea intermitentemente en color amarillo, ¿qué conducta debe asumir el conductor?",
+    options: [
+      "Detener el vehículo por completo y esperar a que el semáforo cambie a color verde.",
+      "Continuar la marcha manteniendo la velocidad máxima del carril de forma constante.",
+      "Acelerar para cruzar la intersección lo más rápido posible ante el cambio de fase del semáforo.",
+      "Avanzar con precaución, disminuyendo la velocidad y estando atento a ceder el paso a peatones u otros vehículos con prelación."
+    ],
+    correctAnswer: 3,
+    category: "Infraestructura"
+  },
+  {
+    id: 58,
+    question: "De acuerdo con las normas de tránsito de Colombia, al aproximarse a una intersección vial donde no hay señalización de prioridad, ¿quién tiene la prelación de paso?",
+    options: [
+      "El vehículo que se aproxima por el costado derecho del conductor.",
+      "El vehículo de mayor tamaño o peso de carga que transite por la vía principal.",
+      "Aquel conductor que use primero la bocina y realice señales de luces altas.",
+      "El vehículo que continúe recto sin importar el costado por donde venga cruzando."
+    ],
+    correctAnswer: 0,
+    category: "Infraestructura"
+  },
+  {
+    id: 62,
+    question: "Al aproximarse a una glorieta o rotonda de un solo carril, ¿quién tiene la prioridad o prelación de paso legal?",
+    options: [
+      "El vehículo que pretenda ingresar primero a la glorieta por el acceso derecho.",
+      "El vehículo de servicio público o de carga que venga por una avenida de dos carriles.",
+      "Aquel vehículo que transite a mayor velocidad media dentro de la vía de aproximación.",
+      "El vehículo que ya se encuentra circulando dentro de la glorieta con respecto a los que pretenden ingresar."
+    ],
+    correctAnswer: 3,
+    category: "Infraestructura"
+  },
+  {
+    id: 67,
+    question: "Al ingresar a una autopista a través de un carril de incorporación (carril de aceleración), el conductor debe:",
+    options: [
+      "Avanzar lentamente y detenerse al inicio del carril esperando que no transite ningún auto.",
+      "Acelerar a fondo cruzándose de forma rápida sin mirar los espejos retrovisores.",
+      "Ingresar inmediatamente tocando la bocina para exigir que le abran el paso prioritario.",
+      "Evaluar la velocidad del tránsito por los retrovisores, acelerar adecuadamente para igualar la velocidad e incorporarse sin entorpecer."
+    ],
+    correctAnswer: 3,
+    category: "Infraestructura"
+  },
+  {
+    id: 74,
+    question: "Al aproximarse a un cruce ferroviario a nivel (paso de tren) sin barreras físicas instaladas, el conductor debe:",
+    options: [
+      "Cruzar lo más rápido posible tocando insistentemente la bocina para advertir.",
+      "Encender las luces de parqueo y continuar la marcha sin detenerse.",
+      "Detener el vehículo por completo a una distancia prudente, apagar el radio, escuchar y mirar en ambos sentidos antes de avanzar.",
+      "Avanzar despacio de forma diagonal para evitar golpes en el chasis."
+    ],
+    correctAnswer: 2,
+    category: "Infraestructura"
+  },
+  {
+    id: 80,
+    question: "¿Qué indica la presencia de una luz roja intermitente instalada en un paso a nivel ferroviario o puente móvil?",
+    options: [
+      "Que el paso está habilitado avanzando con máxima precaución.",
+      "Que el semáforo se encuentra fuera de servicio de forma indefinida.",
+      "Prohibición de paso inminente; equivale a un Pare obligatorio debido a la aproximación de un tren o maniobra de puente.",
+      "Un aviso reglamentario exclusivo para vehículos de carga pesada."
+    ],
+    correctAnswer: 2,
+    category: "Infraestructura"
+  },
+  {
+    id: 94,
+    question: "Al aproximarse a una glorieta de dos carriles, si usted tiene la intención de tomar la tercera salida (giro a la izquierda), debe:",
+    options: [
+      "Ingresar por el carril derecho de aproximación y mantenerse por fuera de la rotonda.",
+      "Avanzar recto cortando camino por la zona central ajardinada de la glorieta.",
+      "Ingresar por el carril izquierdo, circular por la zona interna de la glorieta y pasar con cuidado al carril externo antes de salir.",
+      "Hacer señales con la bocina y cruzar de manera transversal sin importar carriles."
+    ],
+    correctAnswer: 2,
+    category: "Infraestructura"
+  },
+  {
+    id: 105,
+    question: "La distancia mínima de parqueo permitida por la reglamentación colombiana con respecto a un hidrante de bomberos es de:",
+    options: [
+      "Dos (2) metros constantes en calzadas secundarias urbanas.",
+      "Un (1) metro siempre que el conductor permanezca dentro de la cabina.",
+      "Cinco (5) metros libres para garantizar el acceso rápido de emergencia en incendios.",
+      "Diez (10) metros en cualquier tipo de vía principal o autopista nacional."
+    ],
+    correctAnswer: 2,
+    category: "Infraestructura"
+  },
+  {
+    id: 106,
+    question: "¿Qué indica la presencia de una línea continua blanca pintada sobre el borde derecho de la calzada de asfalto?",
+    options: [
+      "Delimita el borde exterior transitable de la vía, separando la calzada de la berma o zona exterior.",
+      "Prohibición estricta de adelantar por el costado izquierdo de la vía.",
+      "Un carril exclusivo para el uso de transportes masivos de servicio público.",
+      "Zonas habilitadas exclusivamente para estacionar vehículos particulares."
+    ],
+    correctAnswer: 0,
+    category: "Infraestructura"
   },
   {
     id: 108,
@@ -1313,215 +1257,7 @@ export const QUESTION_BANK: Question[] = [
       "20 km/h únicamente durante el horario laboral o escolar reglamentario."
     ],
     correctAnswer: 0,
-    category: "Bloque 2: Situaciones y Seguridad Vial"
-  },
-
-  // ==========================================
-  // BLOQUE 3: Leyes, Sanciones y Normas de Tránsito (Preguntas 109 a 147)
-  // ==========================================
-  {
-    id: 109,
-    question: "La vigencia de la licencia de conducción para vehículos de servicio particular para personas entre 60 y 80 años de edad es de:",
-    options: [
-      "Cinco (5) años.",
-      "Diez (10) años contados a partir de la expedición.",
-      "Tres (3) años reglamentarios.",
-      "Anual con examen de aptitud física obligatorio."
-    ],
-    correctAnswer: 0,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 110,
-    question: "La vigencia de la licencia de conducción para servicio público para personas mayores de 60 años de edad es de:",
-    options: [
-      "Un (1) año por razones de control de aptitud psicométrica.",
-      "Tres (3) años reglamentarios.",
-      "Cinco (5) años contados a partir de la expedición.",
-      "Dos (2) años obligatorios."
-    ],
-    correctAnswer: 0,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 111,
-    question: "Las licencias de conducción para motocicletas de cilindraje superior a 125 c.c. corresponden a la categoría:",
-    options: [
-      "A1 de manera general.",
-      "B1 de conducción liviana.",
-      "A2 de conducción de motocicletas de mediano y gran cilindraje.",
-      "C1 de servicio público particular."
-    ],
-    correctAnswer: 2,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 112,
-    question: "La Revisión Técnico-Mecánica obligatoria para vehículos particulares nuevos debe realizarse por primera vez:",
-    options: [
-      "A los dos (2) años contados a partir de su matrícula inicial.",
-      "Anualmente a partir de la fecha de entrega por el concesionario.",
-      "A los cinco (5) años contados a partir de la fecha de su matrícula.",
-      "A los seis (6) años contados a partir de la fecha de matrícula inicial."
-    ],
-    correctAnswer: 2,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 113,
-    question: "El Seguro Obligatorio de Accidentes de Tránsito (SOAT) cubre principalmente:",
-    options: [
-      "Los daños mecánicos y materiales sufridos por los vehículos implicados en el siniestro.",
-      "El robo total o parcial del vehículo y los perjuicios civiles a terceros.",
-      "Únicamente los gastos médicos de la persona que conducía el auto asegurado.",
-      "Los gastos médicos, quirúrgicos, farmacéuticos, indemnizaciones por incapacidad y transporte de todas las personas lesionadas en el siniestro."
-    ],
-    correctAnswer: 3,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 114,
-    question: "Circular con la Revisión Técnico-Mecánica o el SOAT vencidos genera la siguiente sanción reglamentaria:",
-    options: [
-      "Una amonestación escrita con obligación de asistir a un curso de seguridad.",
-      "Inmovilización inmediata del vehículo sin multa económica aplicable.",
-      "Multa equivalente a 15 salarios mínimos diarios legales vigentes sin inmovilizar.",
-      "Multa equivalente a 30 salarios mínimos diarios legales vigentes (SMDLV) e inmovilización obligatoria del vehículo."
-    ],
-    correctAnswer: 3,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 115,
-    question: "¿Qué sanción se aplica a un conductor que sea sorprendido conduciendo bajo la influencia del alcohol en Grado 1 por primera vez?",
-    options: [
-      "Suspensión de la licencia de conducción por un (1) año y multa mínima de 45 SMDLV.",
-      "Cancelación definitiva de la licencia y arresto preventivo de 72 horas.",
-      "Suspensión de la licencia por tres (3) años, multa de 180 SMDLV, inmovilización del vehículo y 30 horas de servicio comunitario.",
-      "Retención de documentos por quince días calendario sin sanción pecuniaria."
-    ],
-    correctAnswer: 2,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 116,
-    question: "La velocidad máxima permitida para vehículos de servicio público y escolar en zonas urbanas es de:",
-    options: [
-      "80 km/h en calzadas secundarias urbanas.",
-      "60 km/h en todas las avenidas principales congestionadas.",
-      "40 km/h en zonas de aproximación escolar residenciales.",
-      "50 km/h en vías urbanas de manera generalizada según normatividad vigente."
-    ],
-    correctAnswer: 3,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 117,
-    question: "Conducir un vehículo sin haber obtenido previamente la respectiva licencia de conducción da lugar a:",
-    options: [
-      "Amonestación verbal permitiendo continuar el viaje con un conductor habilitado.",
-      "Multa equivalente a 30 salarios mínimos diarios legales vigentes (SMDLV) e inmovilización del vehículo.",
-      "Retención del automóvil por 24 horas sin cobro de multas administrativas.",
-      "Citación judicial para comparecer ante un juez de tránsito en zona rural."
-    ],
-    correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 118,
-    question: "El desacato a las señales de tránsito de los agentes de tránsito se sanciona con multa equivalente a:",
-    options: [
-      "Cinco (5) salarios mínimos diarios legales vigentes.",
-      "Diez (10) salarios mínimos diarios legales vigentes.",
-      "Quince (15) salarios mínimos diarios legales vigentes (SMDLV).",
-      "Treinta (30) salarios mínimos diarios legales vigentes con curso obligatorio."
-    ],
-    correctAnswer: 2,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 119,
-    question: "El adelantamiento en curvas, pendientes prolongadas o puentes de un solo carril constituye una infracción codificada como de tipo:",
-    options: [
-      "Infracción leve con sanción de amonestación preventiva simple.",
-      "Infracción gravísima, con multa de 30 SMDLV y posible inmovilización.",
-      "Infracción administrativa simple que no amerita comparendo físico.",
-      "Infracción penal con arresto inmediato de 24 horas de reclusión."
-    ],
-    correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 120,
-    question: "¿Cuántos años de suspensión de licencia corresponden a Grado 2 de alcoholemia por primera vez?",
-    options: [
-      "Dos (2) años obligatorios.",
-      "Cinco (5) años de suspensión de la licencia.",
-      "Tres (3) años con inmovilización simple.",
-      "Diez (10) años de suspensión y cancelación definitiva."
-    ],
-    correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 121,
-    question: "El valor del comparendo electrónico puede reducirse en un 50% si el infractor realiza el pago y el curso obligatorio dentro de:",
-    options: [
-      "Los tres (3) días hábiles siguientes a la notificación oficial física.",
-      "Los once (11) días hábiles siguientes a la notificación de la infracción.",
-      "Los treinta (30) días calendario posteriores al registro fotográfico.",
-      "Cualquier momento antes de la fecha de citación a audiencia formal."
-    ],
-    correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 122,
-    question: "¿Qué entidad en Colombia se encarga de expedir y regular las licencias de conducción a través del RUNT?",
-    options: [
-      "La Policía Nacional de Carreteras.",
-      "El Organismo de Tránsito Municipal de la jurisdicción habilitado por el Ministerio de Transporte.",
-      "El Ministerio de Educación Nacional de forma directa.",
-      "La Superintendencia de Puertos y Transporte terrestre."
-    ],
-    correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 123,
-    question: "Circular en contravía (en sentido contrario al señalado para la vía) es sancionado con:",
-    options: [
-      "Amonestación verbal simple obligando a dar la vuelta.",
-      "Multa equivalente a 30 salarios mínimos diarios legales vigentes (SMDLV).",
-      "Retención de la licencia de conducción por un periodo de seis meses.",
-      "Multa de 15 salarios mínimos diarios sin inmovilización del auto."
-    ],
-    correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 124,
-    question: "El nivel de alcoholemia denominado \"Grado 0\" de tolerancia para conductores particulares se sitúa entre:",
-    options: [
-      "0.1 y 0.19 mg de etanol por litro de sangre.",
-      "20 y 39 mg de etanol por cada 100 ml de sangre.",
-      "40 y 99 mg de etanol por cada 100 ml de sangre.",
-      "100 mg o superior por cada 100 ml de sangre."
-    ],
-    correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 125,
-    question: "Un conductor que acumule dos o más infracciones de tránsito en un periodo menor a seis meses se considera:",
-    options: [
-      "Infractor pasivo con derecho a descuentos sucesivos ilimitados.",
-      "Reincidente, lo que faculta a la autoridad para suspender la licencia de conducción por seis meses.",
-      "Un infractor menor exento de sanciones de inmovilización.",
-      "Sujeto de multas dobles automáticas sin derecho a descargos."
-    ],
-    correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Infraestructura"
   },
   {
     id: 126,
@@ -1533,55 +1269,7 @@ export const QUESTION_BANK: Question[] = [
       "Bahías de parqueo debidamente señalizadas por la alcaldía."
     ],
     correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 127,
-    question: "La edad mínima requerida en Colombia para obtener una licencia de conducción de servicio público es de:",
-    options: [
-      "Dieciséis (16) años cumplidos.",
-      "Dieciocho (18) años de edad cumplidos de acuerdo con la normatividad legal.",
-      "Veintiún (21) años de edad obligatorios.",
-      "Veinticinco (25) años de edad con experiencia certificada."
-    ],
-    correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 128,
-    question: "El comparendo físico de tránsito se define legalmente en Colombia como:",
-    options: [
-      "Una condena inmediata de culpabilidad que exige el pago de la multa.",
-      "Una orden formal de notificación para que el presunto infractor comparezca ante la autoridad de tránsito competente.",
-      "Un documento meramente informativo sin valor legal pecuniario posterior.",
-      "Una solicitud de retención preventiva de documentos del vehículo."
-    ],
-    correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 129,
-    question: "No portar el kit de carretera completo obligatorio regulado por el CNT acarrea una sanción de:",
-    options: [
-      "Una multa equivalente a cinco salarios mínimos diarios vigentes.",
-      "Multa equivalente a quince salarios mínimos diarios legales vigentes (SMDLV).",
-      "La inmovilización inmediata del vehículo en grúa autorizada.",
-      "Curso de seguridad vial de dos horas sin cobro pecuniario alguno."
-    ],
-    correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
-  },
-  {
-    id: 130,
-    question: "La licencia de conducción en Colombia se cancela de forma definitiva en el siguiente caso:",
-    options: [
-      "Por acumular tres comparendos de velocidad en un año de calendario.",
-      "Por conducir bajo estado de embriaguez por tercera vez (reincidencia) o provocar muertes culposas.",
-      "Por negarse a portar el chaleco reflectivo reglamentario nocturno.",
-      "Por el vencimiento del término legal de renovación física."
-    ],
-    correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Infraestructura"
   },
   {
     id: 131,
@@ -1593,7 +1281,503 @@ export const QUESTION_BANK: Question[] = [
       "Las señales horizontales pintadas directamente sobre el pavimento seco."
     ],
     correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Infraestructura"
+  },
+  {
+    id: 148,
+    question: "¿Qué forma geométrica y patrón de colores caracteriza a la mayoría de las señales de tránsito reglamentarias?",
+    options: [
+      "Forma circular con borde rojo, fondo blanco y símbolo negro.",
+      "Forma de rombo con fondo amarillo y bordes negros.",
+      "Forma rectangular con fondo azul y letras blancas.",
+      "Forma triangular con borde verde y fondo amarillo."
+    ],
+    correctAnswer: 0,
+    category: "Infraestructura"
+  },
+  {
+    id: 149,
+    question: "Las señales de tránsito preventivas o de advertencia de peligro se caracterizan por tener forma de:",
+    options: [
+      "Círculo con borde rojo.",
+      "Rombo con fondo amarillo y borde negro.",
+      "Octágono con fondo rojo.",
+      "Rectángulo con fondo azul."
+    ],
+    correctAnswer: 1,
+    category: "Infraestructura"
+  },
+  {
+    id: 150,
+    question: "Las señales de tránsito informativas que guían sobre destinos, sitios de interés y distancias tienen predominantemente fondo de color:",
+    options: [
+      "Amarillo o naranja.",
+      "Rojo o blanco.",
+      "Azul o verde con texto y símbolos blancos.",
+      "Negro con texto reflectivo amarillo."
+    ],
+    correctAnswer: 2,
+    category: "Infraestructura"
+  },
+  {
+    id: 151,
+    question: "La presencia de una doble línea continua de color amarillo pintada en el centro de la calzada indica:",
+    options: [
+      "Prohibición absoluta de adelantar en ambos sentidos de circulación.",
+      "Permiso para adelantar únicamente por la derecha.",
+      "Carril preferencial para vehículos pesados.",
+      "Zona de estacionamiento temporal permitido."
+    ],
+    correctAnswer: 0,
+    category: "Infraestructura"
+  },
+  {
+    id: 152,
+    question: "Una línea central discontinua de color amarillo sobre la calzada significa que:",
+    options: [
+      "Está prohibido adelantar salvo en emergencias.",
+      "Está permitido realizar adelantamientos en ambos sentidos con la debida precaución.",
+      "La vía es de un solo sentido de circulación.",
+      "Se aproxima un resalto o reductor de velocidad."
+    ],
+    correctAnswer: 1,
+    category: "Infraestructura"
+  },
+  {
+    id: 153,
+    question: "Si la demarcación central de la calzada consta de una línea continua paralela a una línea discontinua, el conductor puede adelantar si:",
+    options: [
+      "Transita por el lado de la línea continua.",
+      "Transita por el lado de la línea discontinua.",
+      "No vienen vehículos a menos de 500 metros.",
+      "Enciende las luces altas de emergencia."
+    ],
+    correctAnswer: 1,
+    category: "Infraestructura"
+  },
+  {
+    id: 154,
+    question: "La instalación de reductores de velocidad tipo resalto o estoperoles en la infraestructura vial tiene como fin:",
+    options: [
+      "Incrementar la tracción mecánica de los neumáticos.",
+      "Obligar a los conductores a reducir la velocidad antes de zonas de riesgo o cruces peatonales.",
+      "Delimitar los carriles de circulación en autopistas.",
+      "Indicar zonas habilitadas para giros en U."
+    ],
+    correctAnswer: 1,
+    category: "Infraestructura"
+  },
+  {
+    id: 155,
+    question: "Las franjas transversales blancas pintadas sobre el pavimento (paso de cebra) delimitan:",
+    options: [
+      "La zona de detención obligatoria para buses de servicio público.",
+      "La franja prioritaria para el cruce exclusivo de peatones.",
+      "La zona de parqueo autorizado para motocicletas.",
+      "El límite de velocidad de inicio de autopista."
+    ],
+    correctAnswer: 1,
+    category: "Infraestructura"
+  },
+  {
+    id: 156,
+    question: "La señal preventiva SP-25 (dos protuberancias continuas) advierte al conductor sobre:",
+    options: [
+      "La proximidad de un puente angosto.",
+      "La proximidad de un rizado o irregularidades continuas en la superficie de la calzada.",
+      "La presencia de zona de derrumbes.",
+      "La cercanía de una zona de peaje."
+    ],
+    correctAnswer: 1,
+    category: "Infraestructura"
+  },
+  {
+    id: 157,
+    question: "La señal reglamentaria SR-01 (octágono rojo con texto PARE) exige al conductor:",
+    options: [
+      "Disminuir levemente la velocidad antes de cruzar.",
+      "Detener la marcha del vehículo por completo antes de la línea de parada o intersección.",
+      "Girar obligatoriamente hacia la derecha.",
+      "Ceder el paso solo a vehículos de carga pesada."
+    ],
+    correctAnswer: 1,
+    category: "Infraestructura"
+  },
+  {
+    id: 158,
+    question: "La señal reglamentaria SR-02 (triángulo invertido con borde rojo \"CEDA EL PASO\") significa:",
+    options: [
+      "Detenerse obligatoriamente durante 30 segundos.",
+      "Disminuir la velocidad y ceder la preferencia de paso a los vehículos que circulan por la vía principal.",
+      "Carril cerrado por obras en la infraestructura.",
+      "Prohibición de girar a la izquierda."
+    ],
+    correctAnswer: 1,
+    category: "Infraestructura"
+  },
+  {
+    id: 159,
+    question: "La berma es una franja longitudinal de la vía contigua a la calzada destinada a:",
+    options: [
+      "El tránsito habitual de vehículos de carga pesada.",
+      "El estacionamiento de emergencia, detención temporal o tránsito peatonal fuera del flujo principal.",
+      "Adelantamientos rápidos por la derecha.",
+      "Uso exclusivo para maniobras de reversa."
+    ],
+    correctAnswer: 1,
+    category: "Infraestructura"
+  },
+  {
+    id: 160,
+    question: "Las señales de tránsito con fondo de color naranja e inscripciones negras indican:",
+    options: [
+      "Sitios turísticos y recreativos.",
+      "Presencia de obras, mantenimiento o trabajos temporales en la infraestructura vial.",
+      "Rutas habilitadas para transporte de materiales peligrosos.",
+      "Zonas de velocidad libre en carreteras nacionales."
+    ],
+    correctAnswer: 1,
+    category: "Infraestructura"
+  },
+  {
+    id: 161,
+    question: "La infraestructura vial segregada por bordillos o pintura especial destinada exclusivamente a la circulación de bicicletas se denomina:",
+    options: [
+      "Berma exterior.",
+      "Ciclorruta o ciclovía.",
+      "Carril de aceleración.",
+      "Bahía de servicio."
+    ],
+    correctAnswer: 1,
+    category: "Infraestructura"
+  },
+  {
+    id: 162,
+    question: "La señal preventiva con una \"T\" negra sobre fondo amarillo advierte:",
+    options: [
+      "Proximidad de un túnel de doble vía.",
+      "Proximidad de una intersección en T donde se debe girar a la izquierda o derecha.",
+      "Zona de terminal de transporte terrestre.",
+      "Fin de la calzada pavimentada."
+    ],
+    correctAnswer: 1,
+    category: "Infraestructura"
+  },
+  {
+    id: 163,
+    question: "La línea blanca continua pintada de forma transversal sobre la calzada antes de un semáforo representa:",
+    options: [
+      "El límite máximo donde debe detenerse el vehículo sin invadir el paso peatonal.",
+      "El inicio del carril de adelantamiento rápido.",
+      "La zona donde se permite el ascenso de pasajeros.",
+      "El punto de aceleración para ingresar a la rotonda."
+    ],
+    correctAnswer: 0,
+    category: "Infraestructura"
+  },
+
+  // ==========================================
+  // MÓDULO 4: Normativa vial
+  // ==========================================
+  {
+    id: 68,
+    question: "De acuerdo con el Código Nacional de Tránsito, es obligatorio el uso del cinturón de seguridad en los asientos traseros:",
+    options: [
+      "En todos los vehículos fabricados a partir del año 2004 en cualquier calzada nacional, departamental o municipal.",
+      "Únicamente cuando se transite por carreteras nacionales o autopistas nacionales de alta velocidad.",
+      "Solamente si viajan personas de la tercera edad o mujeres en estado de gestación.",
+      "En ningún caso el uso del cinturón en asientos traseros es sancionable en zonas urbanas."
+    ],
+    correctAnswer: 0,
+    category: "Normativa vial"
+  },
+  {
+    id: 69,
+    question: "¿Cuál es el límite máximo de velocidad permitido para vehículos particulares que transitan por carreteras nacionales o autopistas en Colombia?",
+    options: [
+      "90 km/h de forma generalizada sin importar las condiciones del clima.",
+      "100 km/h en todas las autopistas nacionales de manera uniforme.",
+      "140 km/h si la vía cuenta con doble calzada y barreras físicas medianas.",
+      "120 km/h siempre que las condiciones de seguridad vial y la señalización reglamentaria lo permitan."
+    ],
+    correctAnswer: 3,
+    category: "Normativa vial"
+  },
+  {
+    id: 89,
+    question: "Al encontrarse con un retén o puesto de control de la Policía de Tránsito en la vía, el conductor debe:",
+    options: [
+      "Acelerar para evitar demoras innecesarias si tiene toda su documentación vigente.",
+      "Encender de inmediato luces altas y bocinas cruzándose de carril de forma ágil.",
+      "Orillarse lentamente y salir corriendo a entregar los papeles al oficial de guardia.",
+      "Disminuir la velocidad de manera progresiva, seguir las indicaciones del oficial, detenerse de forma segura y colaborar con la autoridad."
+    ],
+    correctAnswer: 3,
+    category: "Normativa vial"
+  },
+  {
+    id: 93,
+    question: "Los sistemas de retención infantil (sillas de seguridad para bebés y niños pequeños) deben ser instalados:",
+    options: [
+      "En el asiento delantero si va acompañado por una persona adulta responsable.",
+      "Encima de las piernas del copiloto asegurados con el cinturón primario.",
+      "En el asiento trasero central únicamente utilizando cinturones de dos puntos.",
+      "Obligatoriamente en los asientos traseros del vehículo, fijados de manera segura mediante sistemas ISOFIX o el cinturón de seguridad de tres puntos."
+    ],
+    correctAnswer: 3,
+    category: "Normativa vial"
+  },
+  {
+    id: 109,
+    question: "La vigencia de la licencia de conducción para vehículos de servicio particular para personas entre 60 y 80 años de edad es de:",
+    options: [
+      "Cinco (5) años.",
+      "Diez (10) años contados a partir de la expedición.",
+      "Tres (3) años reglamentarios.",
+      "Anual con examen de aptitud física obligatorio."
+    ],
+    correctAnswer: 0,
+    category: "Normativa vial"
+  },
+  {
+    id: 110,
+    question: "La vigencia de la licencia de conducción para servicio público para personas mayores de 60 años de edad es de:",
+    options: [
+      "Un (1) año por razones de control de aptitud psicométrica.",
+      "Tres (3) años reglamentarios.",
+      "Cinco (5) años contados a partir de la expedición.",
+      "Dos (2) años obligatorios."
+    ],
+    correctAnswer: 0,
+    category: "Normativa vial"
+  },
+  {
+    id: 111,
+    question: "Las licencias de conducción para motocicletas de cilindraje superior a 125 c.c. corresponden a la categoría:",
+    options: [
+      "A1 de manera general.",
+      "B1 de conducción liviana.",
+      "A2 de conducción de motocicletas de mediano y gran cilindraje.",
+      "C1 de servicio público particular."
+    ],
+    correctAnswer: 2,
+    category: "Normativa vial"
+  },
+  {
+    id: 112,
+    question: "La Revisión Técnico-Mecánica obligatoria para vehículos particulares nuevos debe realizarse por primera vez:",
+    options: [
+      "A los dos (2) años contados a partir de su matrícula inicial.",
+      "Anualmente a partir de la fecha de entrega por el concesionario.",
+      "A los cinco (5) años contados a partir de la fecha de su matrícula.",
+      "A los seis (6) años contados a partir de la fecha de matrícula inicial."
+    ],
+    correctAnswer: 2,
+    category: "Normativa vial"
+  },
+  {
+    id: 113,
+    question: "El Seguro Obligatorio de Accidentes de Tránsito (SOAT) cubre principalmente:",
+    options: [
+      "Los daños mecánicos y materiales sufridos por los vehículos implicados en el siniestro.",
+      "El robo total o parcial del vehículo y los perjuicios civiles a terceros.",
+      "Únicamente los gastos médicos de la persona que conducía el auto asegurado.",
+      "Los gastos médicos, quirúrgicos, farmacéuticos, indemnizaciones por incapacidad y transporte de todas las personas lesionadas en el siniestro."
+    ],
+    correctAnswer: 3,
+    category: "Normativa vial"
+  },
+  {
+    id: 114,
+    question: "Circular con la Revisión Técnico-Mecánica o el SOAT vencidos genera la siguiente sanción reglamentaria:",
+    options: [
+      "Una amonestación escrita con obligación de asistir a un curso de seguridad.",
+      "Inmovilización inmediata del vehículo sin multa económica aplicable.",
+      "Multa equivalente a 15 salarios mínimos diarios legales vigentes sin inmovilizar.",
+      "Multa equivalente a 30 salarios mínimos diarios legales vigentes (SMDLV) e inmovilización obligatoria del vehículo."
+    ],
+    correctAnswer: 3,
+    category: "Normativa vial"
+  },
+  {
+    id: 115,
+    question: "¿Qué sanción se aplica a un conductor que sea sorprendido conduciendo bajo la influencia del alcohol en Grado 1 por primera vez?",
+    options: [
+      "Suspensión de la licencia de conducción por un (1) año y multa mínima de 45 SMDLV.",
+      "Cancelación definitiva de la licencia y arresto preventivo de 72 horas.",
+      "Suspensión de la licencia por tres (3) años, multa de 180 SMDLV, inmovilización del vehículo y 30 horas de servicio comunitario.",
+      "Retención de documentos por quince días calendario sin sanción pecuniaria."
+    ],
+    correctAnswer: 2,
+    category: "Normativa vial"
+  },
+  {
+    id: 116,
+    question: "La velocidad máxima permitida para vehículos de servicio público y escolar en zonas urbanas es de:",
+    options: [
+      "80 km/h en calzadas secundarias urbanas.",
+      "60 km/h en todas las avenidas principales congestionadas.",
+      "40 km/h en zonas de aproximación escolar residenciales.",
+      "50 km/h en vías urbanas de manera generalizada según normatividad vigente."
+    ],
+    correctAnswer: 3,
+    category: "Normativa vial"
+  },
+  {
+    id: 117,
+    question: "Conducir un vehículo sin haber obtenido previamente la respectiva licencia de conducción da lugar a:",
+    options: [
+      "Amonestación verbal permitiendo continuar el viaje con un conductor habilitado.",
+      "Multa equivalente a 30 salarios mínimos diarios legales vigentes (SMDLV) e inmovilización del vehículo.",
+      "Retención del automóvil por 24 horas sin cobro de multas administrativas.",
+      "Citación judicial para comparecer ante un juez de tránsito en zona rural."
+    ],
+    correctAnswer: 1,
+    category: "Normativa vial"
+  },
+  {
+    id: 118,
+    question: "El desacato a las señales de tránsito de los agentes de tránsito se sanciona con multa equivalente a:",
+    options: [
+      "Cinco (5) salarios mínimos diarios legales vigentes.",
+      "Diez (10) salarios mínimos diarios legales vigentes.",
+      "Quince (15) salarios mínimos diarios legales vigentes (SMDLV).",
+      "Treinta (30) salarios mínimos diarios legales vigentes con curso obligatorio."
+    ],
+    correctAnswer: 2,
+    category: "Normativa vial"
+  },
+  {
+    id: 119,
+    question: "El adelantamiento en curvas, pendientes prolongadas o puentes de un solo carril constituye una infracción codificada como de tipo:",
+    options: [
+      "Infracción leve con sanción de amonestación preventiva simple.",
+      "Infracción gravísima, con multa de 30 SMDLV y posible inmovilización.",
+      "Infracción administrativa simple que no amerita comparendo físico.",
+      "Infracción penal con arresto inmediato de 24 horas de reclusión."
+    ],
+    correctAnswer: 1,
+    category: "Normativa vial"
+  },
+  {
+    id: 120,
+    question: "¿Cuántos años de suspensión de licencia corresponden a Grado 2 de alcoholemia por primera vez?",
+    options: [
+      "Dos (2) años obligatorios.",
+      "Cinco (5) años de suspensión de la licencia.",
+      "Tres (3) años con inmovilización simple.",
+      "Diez (10) años de suspensión y cancelación definitiva."
+    ],
+    correctAnswer: 1,
+    category: "Normativa vial"
+  },
+  {
+    id: 121,
+    question: "El valor del comparendo electrónico puede reducirse en un 50% si el infractor realiza el pago y el curso obligatorio dentro de:",
+    options: [
+      "Los tres (3) días hábiles siguientes a la notificación oficial física.",
+      "Los once (11) días hábiles siguientes a la notificación de la infracción.",
+      "Los treinta (30) días calendario posteriores al registro fotográfico.",
+      "Cualquier momento antes de la fecha de citación a audiencia formal."
+    ],
+    correctAnswer: 1,
+    category: "Normativa vial"
+  },
+  {
+    id: 122,
+    question: "¿Qué entidad en Colombia se encarga de expedir y regular las licencias de conducción a través del RUNT?",
+    options: [
+      "La Policía Nacional de Carreteras.",
+      "El Organismo de Tránsito Municipal de la jurisdicción habilitado por el Ministerio de Transporte.",
+      "El Ministerio de Educación Nacional de forma directa.",
+      "La Superintendencia de Puertos y Transporte terrestre."
+    ],
+    correctAnswer: 1,
+    category: "Normativa vial"
+  },
+  {
+    id: 123,
+    question: "Circular en contravía (en sentido contrario al señalado para la vía) es sancionado con:",
+    options: [
+      "Amonestación verbal simple obligando a dar la vuelta.",
+      "Multa equivalente a 30 salarios mínimos diarios legales vigentes (SMDLV).",
+      "Retención de la licencia de conducción por un periodo de seis meses.",
+      "Multa de 15 salarios mínimos diarios sin inmovilización del auto."
+    ],
+    correctAnswer: 1,
+    category: "Normativa vial"
+  },
+  {
+    id: 124,
+    question: "El nivel de alcoholemia denominado \"Grado 0\" de tolerancia para conductores particulares se sitúa entre:",
+    options: [
+      "0.1 y 0.19 mg de etanol por litro de sangre.",
+      "20 y 39 mg de etanol por cada 100 ml de sangre.",
+      "40 y 99 mg de etanol por cada 100 ml de sangre.",
+      "100 mg o superior por cada 100 ml de sangre."
+    ],
+    correctAnswer: 1,
+    category: "Normativa vial"
+  },
+  {
+    id: 125,
+    question: "Un conductor que acumule dos o más infracciones de tránsito en un periodo menor a seis meses se considera:",
+    options: [
+      "Infractor pasivo con derecho a descuentos sucesivos ilimitados.",
+      "Reincidente, lo que faculta a la autoridad para suspender la licencia de conducción por seis meses.",
+      "Un infractor menor exento de sanciones de inmovilización.",
+      "Sujeto de multas dobles automáticas sin derecho a descargos."
+    ],
+    correctAnswer: 1,
+    category: "Normativa vial"
+  },
+  {
+    id: 127,
+    question: "La edad mínima requerida en Colombia para obtener una licencia de conducción de servicio público es de:",
+    options: [
+      "Dieciséis (16) años cumplidos.",
+      "Dieciocho (18) años de edad cumplidos de acuerdo con la normatividad legal.",
+      "Veintiún (21) años de edad obligatorios.",
+      "Veinticinco (25) años de edad con experiencia certificada."
+    ],
+    correctAnswer: 1,
+    category: "Normativa vial"
+  },
+  {
+    id: 128,
+    question: "El comparendo físico de tránsito se define legalmente en Colombia como:",
+    options: [
+      "Una condena inmediata de culpabilidad que exige el pago de la multa.",
+      "Una orden formal de notificación para que el presunto infractor comparezca ante la autoridad de tránsito competente.",
+      "Un documento meramente informativo sin valor legal pecuniario posterior.",
+      "Una solicitud de retención preventiva de documentos del vehículo."
+    ],
+    correctAnswer: 1,
+    category: "Normativa vial"
+  },
+  {
+    id: 129,
+    question: "No portar el kit de carretera completo obligatorio regulado por el CNT acarrea una sanción de:",
+    options: [
+      "Una multa equivalente a cinco salarios mínimos diarios vigentes.",
+      "Multa equivalente a quince salarios mínimos diarios legales vigentes (SMDLV).",
+      "La inmovilización inmediata del vehículo en grúa autorizada.",
+      "Curso de seguridad vial de dos horas sin cobro pecuniario alguno."
+    ],
+    correctAnswer: 1,
+    category: "Normativa vial"
+  },
+  {
+    id: 130,
+    question: "La licencia de conducción en Colombia se cancela de forma definitiva en el siguiente caso:",
+    options: [
+      "Por acumular tres comparendos de velocidad en un año de calendario.",
+      "Por conducir bajo estado de embriaguez por tercera vez (reincidencia) o provocar muertes culposas.",
+      "Por negarse a portar el chaleco reflectivo reglamentario nocturno.",
+      "Por el vencimiento del término legal de renovación física."
+    ],
+    correctAnswer: 1,
+    category: "Normativa vial"
   },
   {
     id: 132,
@@ -1605,7 +1789,7 @@ export const QUESTION_BANK: Question[] = [
       "Amonestación escrita simple de seguridad vial."
     ],
     correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Normativa vial"
   },
   {
     id: 133,
@@ -1617,7 +1801,7 @@ export const QUESTION_BANK: Question[] = [
       "Un proceso de revisión mecánica forzosa ordenada por la alcaldía."
     ],
     correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Normativa vial"
   },
   {
     id: 134,
@@ -1629,7 +1813,7 @@ export const QUESTION_BANK: Question[] = [
       "No existe recurso administrativo ordinario contra fallos de tránsito."
     ],
     correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Normativa vial"
   },
   {
     id: 135,
@@ -1641,7 +1825,7 @@ export const QUESTION_BANK: Question[] = [
       "Registrar de forma directa el historial de propietarios del chasis."
     ],
     correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Normativa vial"
   },
   {
     id: 136,
@@ -1653,7 +1837,7 @@ export const QUESTION_BANK: Question[] = [
       "Curso de capacitación vial de diez horas sin cobros monetarios."
     ],
     correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Normativa vial"
   },
   {
     id: 137,
@@ -1665,7 +1849,7 @@ export const QUESTION_BANK: Question[] = [
       "La autorización legal para que una persona natural pueda conducir el auto."
     ],
     correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Normativa vial"
   },
   {
     id: 138,
@@ -1677,7 +1861,7 @@ export const QUESTION_BANK: Question[] = [
       "La aseguradora que expidió la póliza SOAT del vehículo."
     ],
     correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Normativa vial"
   },
   {
     id: 139,
@@ -1689,7 +1873,7 @@ export const QUESTION_BANK: Question[] = [
       "Amonestación de servicio de limpieza urbana por diez horas continuas."
     ],
     correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Normativa vial"
   },
   {
     id: 140,
@@ -1701,7 +1885,7 @@ export const QUESTION_BANK: Question[] = [
       "No se puede sancionar debido a la presunción de inocencia constitucional."
     ],
     correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Normativa vial"
   },
   {
     id: 141,
@@ -1713,7 +1897,7 @@ export const QUESTION_BANK: Question[] = [
       "Amonestación de retiro físico de la película plástica reflectiva."
     ],
     correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Normativa vial"
   },
   {
     id: 142,
@@ -1725,7 +1909,7 @@ export const QUESTION_BANK: Question[] = [
       "El Pico y Placa no da lugar a inmovilización sino únicamente a sanción de multa."
     ],
     correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Normativa vial"
   },
   {
     id: 143,
@@ -1737,7 +1921,7 @@ export const QUESTION_BANK: Question[] = [
       "Cada seis meses de forma preventiva en talleres autorizados."
     ],
     correctAnswer: 0,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Normativa vial"
   },
   {
     id: 144,
@@ -1749,7 +1933,7 @@ export const QUESTION_BANK: Question[] = [
       "Exámenes médicos de aptitud psicofísica del comprador del bien."
     ],
     correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Normativa vial"
   },
   {
     id: 145,
@@ -1761,7 +1945,7 @@ export const QUESTION_BANK: Question[] = [
       "Semestral obligatoria para vehículos de servicio público."
     ],
     correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Normativa vial"
   },
   {
     id: 146,
@@ -1773,7 +1957,7 @@ export const QUESTION_BANK: Question[] = [
       "30 km/h constantes por razones obvias de cruces de peatones vulnerables."
     ],
     correctAnswer: 0,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Normativa vial"
   },
   {
     id: 147,
@@ -1785,6 +1969,61 @@ export const QUESTION_BANK: Question[] = [
       "La inmovilización preventiva inmediata de las cuentas bancarias del citado."
     ],
     correctAnswer: 1,
-    category: "Bloque 3: Leyes, Sanciones y Normas de Tránsito"
+    category: "Normativa vial"
   }
 ];
+
+/**
+ * Helper function to generate an exam of random questions with exact module distribution:
+ * - 20% Mecánica (8 for 40)
+ * - 30% Situaciones de conducción (12 for 40)
+ * - 25% Infraestructura (10 for 40)
+ * - 25% Normativa vial (10 for 40)
+ */
+export function getRandomQuestions(
+  param1?: number | any[],
+  param2?: any[] | number
+): any[] {
+  let allQuestions: Question[] = QUESTION_BANK;
+  let count = 40;
+
+  if (typeof param1 === "number") {
+    count = param1;
+    if (Array.isArray(param2)) {
+      allQuestions = param2;
+    }
+  } else if (Array.isArray(param1)) {
+    allQuestions = param1;
+    if (typeof param2 === "number") {
+      count = param2;
+    }
+  }
+
+  const shuffle = <T>(arr: T[]): T[] => [...arr].sort(() => 0.5 - Math.random());
+
+  const mecanica = allQuestions.filter(q => q.category === "Mecánica");
+  const situaciones = allQuestions.filter(q => q.category === "Situaciones de conducción");
+  const infraestructura = allQuestions.filter(q => q.category === "Infraestructura");
+  const normativa = allQuestions.filter(q => q.category === "Normativa vial");
+
+  const ratioMec = Math.round(count * 0.20);
+  const ratioSit = Math.round(count * 0.30);
+  const ratioInf = Math.round(count * 0.25);
+  const ratioNor = count - ratioMec - ratioSit - ratioInf;
+
+  let selectedMec = shuffle(mecanica).slice(0, ratioMec);
+  let selectedSit = shuffle(situaciones).slice(0, ratioSit);
+  let selectedInf = shuffle(infraestructura).slice(0, ratioInf);
+  let selectedNor = shuffle(normativa).slice(0, ratioNor);
+
+  let combined = [...selectedMec, ...selectedSit, ...selectedInf, ...selectedNor];
+
+  // Fallback if provided list doesn't have enough in specific categories
+  if (combined.length < count) {
+    const selectedIds = new Set(combined.map(q => q.id));
+    const remaining = shuffle(allQuestions.filter(q => !selectedIds.has(q.id)));
+    combined = [...combined, ...remaining.slice(0, count - combined.length)];
+  }
+
+  return shuffle(combined);
+}

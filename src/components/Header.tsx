@@ -8,27 +8,20 @@ import SiecLogo from "./SiecLogo";
 
 export default function Header() {
   return (
-    <header className="bg-black border-b border-neutral-900 px-6 sm:px-12 py-7 sm:py-9 flex flex-col lg:flex-row items-center justify-between gap-6 w-full print:hidden shadow-lg shadow-black/30 transition-all">
-      <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 justify-center lg:justify-start w-full lg:w-auto">
-        {/* Co-Branding INSCOLSST - Prominent, double-sized, and light variant */}
-        <InscolsstLogo size="lg" variant="light" className="flex shrink-0" />
-
-        {/* Vertical divider visible on sm and up */}
-        <div className="h-10 w-[1px] bg-neutral-800 hidden sm:block"></div>
-
-        {/* SIEC Logo - Light Blue, on the same line */}
-        <SiecLogo size="md" variant="light-blue" align="left" className="shrink-0" />
+    <header className="bg-[#032363] border-b border-blue-900/60 px-4 py-3 flex items-center justify-between gap-2 w-full shrink-0 shadow-md print:hidden">
+      <div className="flex items-center gap-2">
+        {/* Co-Branding INSCOLSST - Compact size */}
+        <InscolsstLogo size="sm" variant="light" className="shrink-0" />
+        <div className="h-5 w-[1px] bg-blue-800/80"></div>
+        {/* SIEC Logo */}
+        <SiecLogo size="sm" variant="light-blue" align="left" className="shrink-0" />
       </div>
 
-      <div className="flex items-center justify-between lg:justify-end w-full lg:w-auto gap-4 text-xs sm:text-sm font-medium text-slate-300 border-t border-neutral-900 pt-4 lg:pt-0 lg:border-t-0">
-        <div className="flex items-center gap-3 ml-auto shrink-0">
-          <span className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> 
-            <span className="text-[11px] font-bold text-slate-200">Sistema en Línea</span>
-          </span>
-          <span className="px-2.5 py-0.5 bg-neutral-900 text-slate-300 rounded-full text-[9px] font-bold border border-neutral-800">v1.0.4</span>
-        </div>
+      <div className="flex items-center gap-1.5 px-2 py-0.5 bg-blue-900/60 rounded-full border border-blue-700/50 text-[10px] text-blue-200 font-bold shrink-0">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span className="text-[10px]">En Línea</span>
       </div>
     </header>
   );
 }
+

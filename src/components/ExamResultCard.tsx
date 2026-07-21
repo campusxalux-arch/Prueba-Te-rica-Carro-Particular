@@ -39,7 +39,6 @@ export default function ExamResultCard({
   onRestart
 }: ExamResultCardProps) {
   const [syncStatus, setSyncStatus] = useState<SyncStatus>({ status: "idle" });
-  const [showDetails, setShowDetails] = useState(false);
   const isMounted = useRef(false);
 
   // Calculate scores
@@ -353,8 +352,8 @@ export default function ExamResultCard({
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                 {correctCount} Correctas
               </div>
-              <div className="flex items-center gap-1 bg-rose-100/55 text-rose-800 px-3 py-1 rounded-xl">
-                <XCircle className="w-3.5 h-3.5 text-rose-600" />
+              <div className="flex items-center gap-1 bg-orange-100/70 text-orange-800 border border-orange-200/50 px-3 py-1 rounded-xl">
+                <XCircle className="w-3.5 h-3.5 text-orange-600" />
                 {incorrectCount} Incorrectas
               </div>
             </div>
@@ -450,76 +449,6 @@ export default function ExamResultCard({
           </div>
         </div>
       </motion.div>
-
-      {/* Detailed Question Review Audit Log (Expandable Panel) */}
-      <div className="mt-5 print:block">
-        <button
-          onClick={() => setShowDetails(!showDetails)}
-          className="w-full bg-white border border-slate-200 px-5 py-4 rounded-2xl shadow-sm text-slate-700 font-bold flex items-center justify-between text-xs sm:text-sm cursor-pointer hover:bg-slate-50 transition-all print:hidden"
-        >
-          <span className="flex items-center gap-2">
-            <FileSpreadsheet className="w-4 h-4 text-teal-600 animate-pulse" />
-            Revisar Respuestas Detalladas ({answers.length})
-          </span>
-          {showDetails ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-        </button>
-
-        {/* Audit details panel */}
-        {(showDetails || typeof window === "undefined") && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mt-3 bg-white border border-slate-100 rounded-2xl p-4 shadow-sm print:shadow-none print:border-none print:p-0"
-          >
-            <h3 className="text-sm font-bold text-slate-800 border-b pb-2 mb-3 flex items-center justify-between">
-              <span>Auditoría de Preguntas Respondidas</span>
-              <span className="text-[10px] bg-slate-100 text-slate-500 px-2.5 py-0.5 rounded-full font-mono font-normal">
-                {correctCount}/{totalQuestions} Aciertos
-              </span>
-            </h3>
-
-            <div className="space-y-4 max-h-96 overflow-y-auto pr-1 print:max-h-none print:overflow-visible">
-              {answers.map((ans, idx) => (
-                <div 
-                  key={idx} 
-                  className={`p-3.5 rounded-xl border text-xs leading-relaxed transition-all ${
-                    ans.esCorrecta 
-                      ? "bg-emerald-50/50 border-emerald-100" 
-                      : "bg-rose-50/50 border-rose-100"
-                  }`}
-                >
-                  <div className="flex justify-between items-start gap-2 mb-1.5">
-                    <strong className="text-slate-800 block text-[11px] sm:text-xs">
-                      Pregunta {idx + 1}: {ans.pregunta}
-                    </strong>
-                    {ans.esCorrecta ? (
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    ) : (
-                      <XCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-                    )}
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 mt-2 pt-2 border-t border-slate-200/50 text-[10px] text-slate-600">
-                    <div>
-                      <span className="font-semibold block text-slate-400 uppercase">Tu Respuesta:</span>
-                      <span className={`font-medium ${ans.esCorrecta ? "text-emerald-700" : "text-rose-700"}`}>
-                        {ans.elegida}
-                      </span>
-                    </div>
-                    {!ans.esCorrecta && (
-                      <div>
-                        <span className="font-semibold block text-slate-400 uppercase">Respuesta Correcta:</span>
-                        <span className="font-medium text-emerald-700">
-                          {ans.correcta}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </div>
 
       {/* Embedded CSS Print Rule for perfect certificate printing */}
       <style>{`

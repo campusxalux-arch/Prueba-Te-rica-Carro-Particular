@@ -12,7 +12,8 @@ import {
   HelpCircle, 
   ArrowRight, 
   Volume2, 
-  VolumeX 
+  VolumeX,
+  AlertTriangle 
 } from "lucide-react";
 import { Question, AnswerDetail } from "../types";
 
@@ -57,6 +58,11 @@ export default function ExamSession({ questions, onComplete, userName }: ExamSes
 
   const currentQuestion = questions[currentIndex];
   const progressPercent = Math.round(((currentIndex) / questions.length) * 100);
+
+  // Time limit logic: 45 minutes = 2700 seconds
+  const TOTAL_EXAM_TIME_SECONDS = 45 * 60;
+  const remainingSeconds = Math.max(0, TOTAL_EXAM_TIME_SECONDS - secondsElapsed);
+  const isTimeWarning = remainingSeconds <= 300; // Less than 5 minutes remaining (300 seconds)
 
   const handleOptionSelect = (optionIndex: number) => {
     if (isAnswered) return; // Prevent double clicks or changes
@@ -152,19 +158,29 @@ export default function ExamSession({ questions, onComplete, userName }: ExamSes
   return (
     <div className="max-w-md mx-auto px-4 pb-12">
       {/* Top Header stats */}
-      <div className="flex justify-between items-center bg-white rounded-2xl shadow-sm p-4 mb-4 border border-slate-100">
-        <div className="flex items-center gap-2 text-slate-600">
-          <Clock className="w-4 h-4 text-blue-500 animate-pulse" />
-          <span className="font-mono font-bold text-slate-800 text-sm">
-            {formatTime(secondsElapsed)}
+      <div className={`flex justify-between items-center bg-white rounded-2xl shadow-sm p-4 mb-3 border transition-all duration-300 ${
+        isTimeWarning ? "border-orange-300 ring-2 ring-orange-400/30 bg-orange-50/30" : "border-slate-100"
+      }`}>
+        <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-xl transition-all ${
+          isTimeWarning 
+            ? "bg-orange-500 text-white font-bold animate-pulse shadow-sm" 
+            : "text-slate-600 bg-slate-50"
+        }`}>
+          {isTimeWarning ? (
+            <AlertTriangle className="w-4 h-4 text-amber-200 animate-bounce shrink-0" />
+          ) : (
+            <Clock className="w-4 h-4 text-blue-500 animate-pulse shrink-0" />
+          )}
+          <span className="font-mono font-bold text-xs sm:text-sm">
+            {isTimeWarning ? `⚠️ Quedan ${formatTime(remainingSeconds)}` : formatTime(secondsElapsed)}
           </span>
         </div>
         
-        <div className="flex gap-3 text-xs font-bold font-mono">
+        <div className="flex gap-2 sm:gap-3 text-xs font-bold font-mono">
           <span className="px-2 py-1 bg-emerald-50 text-emerald-600 rounded-lg">
             Correctas: {correctCount}
           </span>
-          <span className="px-2 py-1 bg-rose-50 text-rose-600 rounded-lg">
+          <span className="px-2 py-1 bg-orange-50 text-orange-600 rounded-lg border border-orange-100">
             Incorrectas: {incorrectCount}
           </span>
         </div>
@@ -178,10 +194,31 @@ export default function ExamSession({ questions, onComplete, userName }: ExamSes
         </button>
       </div>
 
+      {/* Visual Alert Bar when < 5 Minutes remain */}
+      {isTimeWarning && (
+        <motion.div
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-4 p-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-2xl shadow-md border border-orange-600 flex items-center justify-between text-xs font-bold"
+        >
+          <div className="flex items-center gap-2">
+            <AlertTriangle className="w-5 h-5 text-amber-200 shrink-0 animate-bounce" />
+            <div>
+              <p className="font-extrabold uppercase tracking-wide text-[11px] text-amber-100">
+                ¡Alerta de Tiempo Restante!
+              </p>
+              <p className="font-medium text-white text-[11px] leading-tight opacity-95">
+                Quedan menos de 5 minutos ({formatTime(remainingSeconds)}). Finalice sus respuestas pronto.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      )}
+
       {/* Progress Bar Container */}
       <div className="mb-5 bg-slate-200 h-2.5 rounded-full overflow-hidden shadow-inner">
         <motion.div 
-          className="bg-blue-600 h-full rounded-full"
+          className={`h-full rounded-full transition-colors duration-300 ${isTimeWarning ? "bg-orange-500" : "bg-blue-600"}`}
           initial={{ width: 0 }}
           animate={{ width: `${progressPercent}%` }}
           transition={{ duration: 0.3 }}
@@ -230,9 +267,9 @@ export default function ExamSession({ questions, onComplete, userName }: ExamSes
                   buttonStyle = "border-emerald-500 bg-emerald-50/80 text-emerald-800 font-medium";
                   iconElement = <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />;
                 } else if (isSelected) {
-                  // Selected incorrect option highlighted in red
-                  buttonStyle = "border-rose-500 bg-rose-50/80 text-rose-800 font-medium";
-                  iconElement = <XCircle className="w-5 h-5 text-rose-600 shrink-0" />;
+                  // Selected incorrect option highlighted in ORANGE
+                  buttonStyle = "border-orange-500 bg-orange-50/90 text-orange-950 font-medium";
+                  iconElement = <XCircle className="w-5 h-5 text-orange-600 shrink-0" />;
                 } else {
                   // Non-selected options are dimmed slightly
                   buttonStyle = "border-slate-100 bg-slate-50/40 text-slate-400 opacity-60 cursor-not-allowed";
@@ -269,23 +306,23 @@ export default function ExamSession({ questions, onComplete, userName }: ExamSes
                 className={`mt-6 p-4 rounded-2xl border flex items-center gap-3 ${
                   selectedOption === currentQuestion.correctAnswer
                     ? "bg-emerald-50 border-emerald-100 text-emerald-800"
-                    : "bg-rose-50 border-rose-100 text-rose-800"
+                    : "bg-orange-50 border-orange-200 text-orange-950"
                 }`}
               >
                 {selectedOption === currentQuestion.correctAnswer ? (
                   <>
                     <CheckCircle2 className="w-6 h-6 text-emerald-600 shrink-0" />
                     <div>
-                      <h4 className="font-bold text-sm">✅ ¡Respuesta Correcta!</h4>
+                      <h4 className="font-bold text-sm text-emerald-900">✅ ¡Respuesta Correcta!</h4>
                       <p className="text-[11px] opacity-90 leading-tight">Excelente trabajo. Sigue así para asegurar tu aprobación.</p>
                     </div>
                   </>
                 ) : (
                   <>
-                    <XCircle className="w-6 h-6 text-rose-600 shrink-0" />
+                    <XCircle className="w-6 h-6 text-orange-600 shrink-0" />
                     <div>
-                      <h4 className="font-bold text-sm">❌ Respuesta Incorrecta</h4>
-                      <p className="text-[11px] opacity-90 leading-tight">La respuesta correcta era: <strong className="font-semibold">"{currentQuestion.options[currentQuestion.correctAnswer]}"</strong></p>
+                      <h4 className="font-bold text-sm text-orange-900">❌ Respuesta Incorrecta</h4>
+                      <p className="text-[11px] opacity-90 leading-tight text-orange-950">La respuesta correcta era: <strong className="font-semibold text-orange-900">"{currentQuestion.options[currentQuestion.correctAnswer]}"</strong></p>
                     </div>
                   </>
                 )}

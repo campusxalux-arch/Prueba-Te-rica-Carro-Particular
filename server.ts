@@ -7,7 +7,7 @@ import express from "express";
 import path from "path";
 import dotenv from "dotenv";
 import { createServer as createViteServer } from "vite";
-import { QUESTION_BANK } from "./src/data/questions";
+import { QUESTION_BANK, getRandomQuestions } from "./src/data/questions";
 import { parseGoogleDocJSON } from "./src/utils/googleDocsParser";
 import { writeResultsToSheets } from "./src/utils/googleSheetsWriter";
 
@@ -22,63 +22,6 @@ const GOOGLE_APPS_SCRIPT_URL =
 
 // Parse JSON request bodies
 app.use(express.json());
-
-// Helper to determine the block for a question
-function getBlockIndex(category: string, questionId: number): number {
-  const cat = (category || "").toLowerCase();
-  if (questionId >= 1 && questionId <= 54) return 1;
-  if (questionId >= 55 && questionId <= 108) return 2;
-  if (questionId >= 109 && questionId <= 147) return 3;
-
-  if (cat.includes("mecánica") || cat.includes("mecanica") || cat.includes("kit") || cat.includes("bloque 1")) {
-    return 1;
-  }
-  if (cat.includes("situación") || cat.includes("situacion") || cat.includes("vial") || cat.includes("comportamiento") || cat.includes("maniobra") || cat.includes("señal") || cat.includes("senal") || cat.includes("auxilio") || cat.includes("riesgo") || cat.includes("pasiva") || cat.includes("prelación") || cat.includes("prelacion") || cat.includes("bloque 2")) {
-    return 2;
-  }
-  return 3;
-}
-
-// Helper to shuffle and pick N items proportionally distributed by block
-function getRandomQuestions(count = 40, allQuestions = QUESTION_BANK) {
-  const block1 = allQuestions.filter(q => getBlockIndex(q.category, q.id) === 1);
-  const block2 = allQuestions.filter(q => getBlockIndex(q.category, q.id) === 2);
-  const block3 = allQuestions.filter(q => getBlockIndex(q.category, q.id) === 3);
-
-  // Default targets for 40 questions:
-  // Block 1: 15 questions (37.5%)
-  // Block 2: 15 questions (37.5%)
-  // Block 3: 10 questions (25%)
-  let target1 = Math.round(count * 0.375); // 15
-  let target2 = Math.round(count * 0.375); // 15
-  let target3 = count - target1 - target2; // 10
-
-  // Adjust if any block doesn't have enough questions
-  if (block1.length < target1) {
-    const diff = target1 - block1.length;
-    target1 = block1.length;
-    target2 += Math.round(diff / 2);
-    target3 += diff - Math.round(diff / 2);
-  }
-  if (block2.length < target2) {
-    const diff = target2 - block2.length;
-    target2 = block2.length;
-    target3 += diff;
-  }
-  if (block3.length < target3) {
-    const diff = target3 - block3.length;
-    target3 = block3.length;
-    target1 += diff;
-  }
-
-  const shuffle = (arr: any[]) => [...arr].sort(() => 0.5 - Math.random());
-  
-  const selected1 = shuffle(block1).slice(0, target1);
-  const selected2 = shuffle(block2).slice(0, target2);
-  const selected3 = shuffle(block3).slice(0, target3);
-
-  return shuffle([...selected1, ...selected2, ...selected3]);
-}
 
 // API Routes
 
