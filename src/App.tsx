@@ -7,10 +7,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { 
   Compass, 
-  AlertCircle, 
-  Wifi, 
-  Signal, 
-  Battery 
+  AlertCircle 
 } from "lucide-react";
 import Header from "./components/Header";
 import RegistrationForm from "./components/RegistrationForm";
@@ -114,16 +111,6 @@ export default function App() {
       {/* Smartphone Device Frame Container */}
       <div className="w-full max-w-md sm:max-w-[430px] min-h-screen sm:min-h-[820px] sm:max-h-[900px] sm:my-auto sm:rounded-[44px] sm:border-[8px] sm:border-slate-800/90 sm:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] bg-slate-50 flex flex-col relative overflow-hidden transition-all print:border-none print:shadow-none print:m-0 print:max-w-none print:rounded-none print:bg-white print:h-auto print:max-h-none">
         
-        {/* Smartphone Status Bar (Top bar) */}
-        <div className="bg-[#032363] text-white px-5 pt-2 pb-1.5 flex items-center justify-between text-[11px] font-semibold tracking-tight select-none shrink-0 print:hidden">
-          <span>9:41</span>
-          <div className="flex items-center gap-1.5 opacity-90">
-            <Signal className="w-3 h-3" />
-            <Wifi className="w-3 h-3" />
-            <Battery className="w-3.5 h-3.5" />
-          </div>
-        </div>
-
         {/* Co-Branded Header */}
         <Header />
 
