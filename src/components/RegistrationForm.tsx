@@ -270,14 +270,9 @@ export default function RegistrationForm({ onSubmit }: RegistrationFormProps) {
               }`}
             >
               <option value="">Seleccione...</option>
-              <option value="A1">A1 (Motos ≤ 125 c.c.)</option>
-              <option value="A2">A2 (Motos &gt; 125 c.c.)</option>
-              <option value="B1">B1 (Carros particulares)</option>
+              <option value="B1">B1 (Carros, camperos, camionetas particulares)</option>
               <option value="B2">B2 (Camiones particulares)</option>
-              <option value="B3">B3 (Articulados particulares)</option>
-              <option value="C1">C1 (Taxis, públicos)</option>
-              <option value="C2">C2 (Buses, camiones rígidos)</option>
-              <option value="C3">C3 (Articulados públicos)</option>
+              <option value="B3">B3 (Tractocamiones particulares)</option>
             </select>
             {errors.tipoLicencia && (
               <p className="text-[10px] text-rose-500 mt-0.5 flex items-center gap-1 ml-1 font-semibold">
